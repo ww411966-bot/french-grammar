@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>法文文法總覽</title>
+<style>
+  :root {
+    --bg: #f9f8f6;
+    --surface: #ffffff;
+    --border: #e8e5e0;
+    --text: #1a1a1a;
+    --muted: #6b6560;
+    --accent1: #2d6a4f;
+    --accent2: #1d3557;
+    --accent3: #9b2226;
+    --accent4: #6a4c93;
+    --accent5: #ae6108;
+    --tag-bg: #f0ede8;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.65;
+    font-size: 15px;
+  }
+  header {
+    background: var(--accent2);
+    color: #fff;
+    padding: 48px 40px 36px;
+  }
+  header h1 { font-size: 28px; font-weight: 600; letter-spacing: -0.3px; }
+  header p { margin-top: 6px; opacity: 0.7; font-size: 13px; }
+  nav {
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    padding: 0 40px;
+    display: flex;
+    gap: 4px;
+    overflow-x: auto;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+  }
+  nav a {
+    display: inline-block;
+    padding: 14px 16px;
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 13px;
+    white-space: nowrap;
+    border-bottom: 2px solid transparent;
+    transition: color 0.15s, border-color 0.15s;
+  }
+  nav a:hover { color: var(--text); border-bottom-color: var(--accent2); }
+  main { max-width: 1100px; margin: 0 auto; padding: 40px 40px 80px; }
+  section { margin-bottom: 56px; }
+  .section-title {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 20px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+  }
+  h2 {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+  h3 {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--muted);
+    margin: 24px 0 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+  }
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 20px 24px;
+    margin-bottom: 12px;
+  }
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 12px;
+  }
+  .card-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .tag {
+    display: inline-block;
+    background: var(--tag-bg);
+    color: var(--muted);
+    font-size: 11px;
+    padding: 2px 8px;
+    border-radius: 4px;
+    margin-right: 4px;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 16px;
+  }
+  th {
+    background: #f2f0ec;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    color: var(--muted);
+    padding: 10px 16px;
+    text-align: left;
+  }
+  td {
+    padding: 10px 16px;
+    border-top: 1px solid var(--border);
+    vertical-align: top;
+  }
+  tr:hover td { background: #fafaf8; }
+  code {
+    font-family: 'SF Mono', 'Fira Code', monospace;
+    background: var(--tag-bg);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 13px;
+  }
+  .formula {
+    background: var(--accent2);
+    color: #fff;
+    font-family: 'SF Mono', monospace;
+    font-size: 13px;
+    padding: 12px 18px;
+    border-radius: 6px;
+    margin: 10px 0;
+    letter-spacing: 0.3px;
+  }
+  .formula .sep { opacity: 0.4; margin: 0 4px; }
+  .note {
+    font-size: 13px;
+    color: var(--muted);
+    margin-top: 8px;
+    padding-left: 12px;
+    border-left: 2px solid var(--border);
+  }
+  .badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: 700;
+  }
+  .badge-green { background: #d8f3dc; color: var(--accent1); }
+  .badge-blue { background: #dbe9f5; color: var(--accent2); }
+  .badge-red { background: #f8d7da; color: var(--accent3); }
+  .badge-purple { background: #ede0f7; color: var(--accent4); }
+  .badge-orange { background: #fde8c8; color: var(--accent5); }
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  @media (max-width: 700px) {
+    header, main { padding-left: 20px; padding-right: 20px; }
+    nav { padding: 0 20px; }
+    .two-col, .card-grid { grid-template-columns: 1fr; }
+  }
+  .tense-row { display: flex; align-items: baseline; gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--border); }
+  .tense-row:last-child { border-bottom: none; }
+  .tense-name { font-weight: 600; min-width: 200px; }
+  .tense-formula { font-size: 13px; color: var(--muted); }
+  .order-box {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    flex-wrap: wrap;
+    margin: 12px 0;
+  }
+  .order-item {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 8px 14px;
+    font-size: 13px;
+    font-weight: 600;
+    text-align: center;
+    min-width: 80px;
+  }
+  .order-arrow {
+    font-size: 16px;
+    color: var(--border);
+    padding: 0 4px;
+  }
+  .highlight { color: var(--accent3); font-weight: 700; }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>法文文法總覽</h1>
+  <p>時態 × 代名詞 × 句型結構 ／ DELF 備考參考</p>
+</header>
+
+<nav>
+  <a href="#tenses">時態總覽</a>
+  <a href="#conjugation">時態變化</a>
+  <a href="#pronouns">代名詞分類</a>
+  <a href="#placement">語序規則</a>
+  <a href="#agreement">性數配合</a>
+  <a href="#imperative">命令式</a>
+</nav>
+
+<main>
+
+<!-- ① 時態總覽 -->
+<section id="tenses">
+  <div class="section-title">01 — 時態總覽</div>
+  <div class="card">
+    <div class="tense-row">
+      <span class="tense-name">Présent <span class="tag">現在式</span></span>
+      <span class="tense-formula">現在習慣、事實、此刻動作</span>
+    </div>
+    <div class="tense-row">
+      <span class="tense-name">Passé récent <span class="tag">最近過去式</span></span>
+      <span class="tense-formula">venir de + inf ／ 剛發生的事</span>
+    </div>
+    <div class="tense-row">
+      <span class="tense-name">Passé composé <span class="tag">複合過去式</span></span>
+      <span class="tense-formula">avoir/être + p.p. ／ 過去已完成動作</span>
+    </div>
+    <div class="tense-row">
+      <span class="tense-name">Imparfait <span class="tag">未完成過去式</span></span>
+      <span class="tense-formula">過去持續 / 習慣 / 背景描述</span>
+    </div>
+    <div class="tense-row">
+      <span class="tense-name">Plus-que-parfait <span class="tag">愈過去式</span></span>
+      <span class="tense-formula">avoir/être（未完成）+ p.p. ／ 過去的過去</span>
+    </div>
+    <div class="tense-row">
+      <span class="tense-name">Futur proche <span class="tag">近未來式</span></span>
+      <span class="tense-formula">aller + inf ／ 即將發生</span>
+    </div>
+    <div class="tense-row">
+      <span class="tense-name">Futur simple <span class="tag">簡單未來式</span></span>
+      <span class="tense-formula">原形 + 未來語尾 ／ 未來將發生</span>
+    </div>
+    <div class="tense-row">
+      <span class="tense-name">Conditionnel présent <span class="tag">條件式現在</span></span>
+      <span class="tense-formula">假設語氣 / 禮貌請求</span>
+    </div>
+    <div class="tense-row">
+      <span class="tense-name">Conditionnel passé <span class="tag">條件式過去</span></span>
+      <span class="tense-formula">avoir/être（條件式）+ p.p. ／ 未實現假設</span>
+    </div>
+    <div class="tense-row">
+      <span class="tense-name">Subjonctif présent <span class="tag">虛擬式現在</span></span>
+      <span class="tense-formula">vouloir que / il faut que 後的子句</span>
+    </div>
+  </div>
+</section>
+
+<!-- ② 時態變化 × 句型 -->
+<section id="conjugation">
+  <div class="section-title">02 — 時態句型結構</div>
+
+  <h3>Présent 現在式</h3>
+  <div class="two-col">
+    <div class="card">
+      <div class="card-label"><span class="badge badge-green">肯定</span></div>
+      <div class="formula">S <span class="sep">+</span> [代名詞] <span class="sep">+</span> V</div>
+      <div class="note">Je <strong>le</strong> mange.</div>
+    </div>
+    <div class="card">
+      <div class="card-label"><span class="badge badge-red">否定</span></div>
+      <div class="formula">S <span class="sep">+</span> <span class="highlight">ne</span> <span class="sep">+</span> [代名詞] <span class="sep">+</span> V <span class="sep">+</span> <span class="highlight">pas</span></div>
+      <div class="note">Je <strong>ne le</strong> mange <strong>pas</strong>.</div>
+    </div>
+  </div>
+
+  <h3>Passé composé 複合過去式</h3>
+  <div class="two-col">
+    <div class="card">
+      <div class="card-label"><span class="badge badge-green">肯定</span></div>
+      <div class="formula">S <span class="sep">+</span> [代名詞] <span class="sep">+</span> avoir/être <span class="sep">+</span> p.p.</div>
+      <div class="note">Je <strong>l'</strong>ai mangé. / Elle est partie.</div>
+    </div>
+    <div class="card">
+      <div class="card-label"><span class="badge badge-red">否定</span></div>
+      <div class="formula">S <span class="sep">+</span> <span class="highlight">ne</span> <span class="sep">+</span> [代名詞] <span class="sep">+</span> avoir/être <span class="sep">+</span> <span class="highlight">pas</span> <span class="sep">+</span> p.p.</div>
+      <div class="note">Je <strong>ne l'</strong>ai <strong>pas</strong> mangé.</div>
+    </div>
+  </div>
+
+  <h3>Imparfait 未完成過去式</h3>
+  <div class="two-col">
+    <div class="card">
+      <div class="card-label"><span class="badge badge-green">肯定</span></div>
+      <div class="formula">S <span class="sep">+</span> [代名詞] <span class="sep">+</span> V<em>-ais/ait…</em></div>
+      <div class="note">Je <strong>le</strong> mangeais.</div>
+    </div>
+    <div class="card">
+      <div class="card-label"><span class="badge badge-red">否定</span></div>
+      <div class="formula">S <span class="sep">+</span> <span class="highlight">ne</span> <span class="sep">+</span> [代名詞] <span class="sep">+</span> V <span class="sep">+</span> <span class="highlight">pas</span></div>
+      <div class="note">Je <strong>ne le</strong> mangeais <strong>pas</strong>.</div>
+    </div>
+  </div>
+
+  <h3>Futur proche 近未來式 ⚠️</h3>
+  <div class="two-col">
+    <div class="card">
+      <div class="card-label"><span class="badge badge-green">肯定</span></div>
+      <div class="formula">S <span class="sep">+</span> [代名詞] <span class="sep">+</span> aller <span class="sep">+</span> inf</div>
+      <div class="note">Je <strong>vais le</strong> manger.</div>
+    </div>
+    <div class="card">
+      <div class="card-label"><span class="badge badge-red">否定</span> <span style="font-size:11px;color:var(--accent3)">代名詞位置改變！</span></div>
+      <div class="formula">S <span class="sep">+</span> <span class="highlight">ne</span> <span class="sep">+</span> aller <span class="sep">+</span> <span class="highlight">pas</span> <span class="sep">+</span> [代名詞] <span class="sep">+</span> inf</div>
+      <div class="note">Je <strong>ne vais pas le</strong> manger.</div>
+    </div>
+  </div>
+
+  <h3>Futur simple 簡單未來式</h3>
+  <div class="two-col">
+    <div class="card">
+      <div class="card-label"><span class="badge badge-green">肯定</span></div>
+      <div class="formula">S <span class="sep">+</span> [代名詞] <span class="sep">+</span> V<em>-rai/ras…</em></div>
+      <div class="note">Je <strong>le</strong> mangerai.</div>
+    </div>
+    <div class="card">
+      <div class="card-label"><span class="badge badge-red">否定</span></div>
+      <div class="formula">S <span class="sep">+</span> <span class="highlight">ne</span> <span class="sep">+</span> [代名詞] <span class="sep">+</span> V <span class="sep">+</span> <span class="highlight">pas</span></div>
+      <div class="note">Je <strong>ne le</strong> mangerai <strong>pas</strong>.</div>
+    </div>
+  </div>
+
+  <h3>Conditionnel présent 條件式現在</h3>
+  <div class="two-col">
+    <div class="card">
+      <div class="card-label"><span class="badge badge-green">肯定</span></div>
+      <div class="formula">S <span class="sep">+</span> [代名詞] <span class="sep">+</span> V<em>-rais/rait…</em></div>
+      <div class="note">Je <strong>le</strong> mangerais. / Je <strong>voudrais</strong> un café.</div>
+    </div>
+    <div class="card">
+      <div class="card-label"><span class="badge badge-red">否定</span></div>
+      <div class="formula">S <span class="sep">+</span> <span class="highlight">ne</span> <span class="sep">+</span> [代名詞] <span class="sep">+</span> V <span class="sep">+</span> <span class="highlight">pas</span></div>
+      <div class="note">Je <strong>ne le</strong> mangerais <strong>pas</strong>.</div>
+    </div>
+  </div>
+
+  <h3>Passé récent 最近過去式 ⚠️</h3>
+  <div class="two-col">
+    <div class="card">
+      <div class="card-label"><span class="badge badge-green">肯定</span></div>
+      <div class="formula">S <span class="sep">+</span> [代名詞] <span class="sep">+</span> venir de <span class="sep">+</span> inf</div>
+      <div class="note">Je <strong>viens de le</strong> manger.</div>
+    </div>
+    <div class="card">
+      <div class="card-label"><span class="badge badge-red">否定</span> <span style="font-size:11px;color:var(--accent3)">代名詞位置改變！</span></div>
+      <div class="formula">S <span class="sep">+</span> <span class="highlight">ne</span> <span class="sep">+</span> venir <span class="sep">+</span> <span class="highlight">pas de</span> <span class="sep">+</span> [代名詞] <span class="sep">+</span> inf</div>
+      <div class="note">Je <strong>ne viens pas de le</strong> manger.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ③ 代名詞分類 -->
+<section id="pronouns">
+  <div class="section-title">03 — 代名詞完整分類</div>
+
+  <div class="card-grid">
+    <!-- 主詞 -->
+    <div class="card">
+      <div class="card-label" style="color:var(--accent2)">主詞代名詞 Sujets</div>
+      <table>
+        <tr><th>人稱</th><th>單數</th><th>複數</th></tr>
+        <tr><td>1</td><td>je</td><td>nous</td></tr>
+        <tr><td>2</td><td>tu</td><td>vous</td></tr>
+        <tr><td>3 男/中</td><td>il / on</td><td>ils</td></tr>
+        <tr><td>3 女</td><td>elle</td><td>elles</td></tr>
+      </table>
+    </div>
+
+    <!-- COD -->
+    <div class="card">
+      <div class="card-label" style="color:var(--accent1)">COD 直接受詞代名詞</div>
+      <div class="note" style="margin-bottom:10px">代替「動詞直接受詞」（無介系詞）</div>
+      <table>
+        <tr><th>人稱</th><th>單數</th><th>複數</th></tr>
+        <tr><td>1</td><td>me (m')</td><td>nous</td></tr>
+        <tr><td>2</td><td>te (t')</td><td>vous</td></tr>
+        <tr><td>3 男</td><td>le (l')</td><td>les</td></tr>
+        <tr><td>3 女</td><td>la (l')</td><td>les</td></tr>
+      </table>
+      <div class="note">⚠️ 複合時態：COD 在助動詞前時，過去分詞需做性數配合<br>Les lettres qu'il a <strong>écrites</strong>.</div>
+    </div>
+
+    <!-- COI -->
+    <div class="card">
+      <div class="card-label" style="color:var(--accent3)">COI 間接受詞代名詞</div>
+      <div class="note" style="margin-bottom:10px">代替「à + 人」</div>
+      <table>
+        <tr><th>人稱</th><th>單數</th><th>複數</th></tr>
+        <tr><td>1</td><td>me (m')</td><td>nous</td></tr>
+        <tr><td>2</td><td>te (t')</td><td>vous</td></tr>
+        <tr><td>3</td><td>lui</td><td>leur</td></tr>
+      </table>
+      <div class="note">✅ 複合時態：過去分詞<strong>不做</strong>性數配合</div>
+    </div>
+
+    <!-- 反身 -->
+    <div class="card">
+      <div class="card-label" style="color:var(--accent4)">反身代名詞 Réfléchis</div>
+      <div class="note" style="margin-bottom:10px">代名式動詞專用，助動詞一律用 être</div>
+      <table>
+        <tr><th>人稱</th><th>代名詞</th></tr>
+        <tr><td>je</td><td>me (m')</td></tr>
+        <tr><td>tu</td><td>te (t')</td></tr>
+        <tr><td>il/elle/on</td><td>se (s')</td></tr>
+        <tr><td>nous</td><td>nous</td></tr>
+        <tr><td>vous</td><td>vous</td></tr>
+        <tr><td>ils/elles</td><td>se (s')</td></tr>
+      </table>
+      <div class="note">Elle <strong>s'est</strong> levée. ← 過去分詞通常配合主詞</div>
+    </div>
+
+    <!-- EN -->
+    <div class="card">
+      <div class="card-label" style="color:var(--accent5)">EN</div>
+      <div class="note" style="margin-bottom:10px">代替「de + 事物 / 數量 / 不定冠詞名詞」</div>
+      <table>
+        <tr><th>用法</th><th>例句</th></tr>
+        <tr><td>du/de la/des + 名詞</td><td>J'<strong>en</strong> veux.</td></tr>
+        <tr><td>數量</td><td>J'<strong>en</strong> ai deux.</td></tr>
+        <tr><td>de + 地方</td><td>J'<strong>en</strong> viens.</td></tr>
+        <tr><td>de + 事（avoir besoin de…）</td><td>J'<strong>en</strong> ai besoin.</td></tr>
+      </table>
+      <div class="note">⚠️ 複合時態：過去分詞<strong>不做</strong>性數配合</div>
+    </div>
+
+    <!-- Y -->
+    <div class="card">
+      <div class="card-label" style="color:var(--accent1)">Y</div>
+      <div class="note" style="margin-bottom:10px">代替「à/dans/sur/en + 地點」或「à + 事物」</div>
+      <table>
+        <tr><th>用法</th><th>例句</th></tr>
+        <tr><td>地點</td><td>J'<strong>y</strong> vais.</td></tr>
+        <tr><td>à + 事物</td><td>J'<strong>y</strong> pense.</td></tr>
+      </table>
+      <div class="note">⚠️ 人物不用 y，改用 lui/leur<br>Je pense à Marie → Je pense <strong>à elle</strong>. (非 j'y pense)</div>
+    </div>
+
+    <!-- 強調代名詞 -->
+    <div class="card">
+      <div class="card-label" style="color:var(--accent2)">強調代名詞 Toniques</div>
+      <table>
+        <tr><th>人稱</th><th>代名詞</th></tr>
+        <tr><td>je</td><td>moi</td></tr>
+        <tr><td>tu</td><td>toi</td></tr>
+        <tr><td>il / elle</td><td>lui / elle</td></tr>
+        <tr><td>nous</td><td>nous</td></tr>
+        <tr><td>vous</td><td>vous</td></tr>
+        <tr><td>ils / elles</td><td>eux / elles</td></tr>
+      </table>
+      <div class="note"><strong>Moi</strong>, je parle français. / C'est pour <strong>toi</strong>. / plus grand que <strong>moi</strong>.</div>
+    </div>
+
+    <!-- 關係代名詞 -->
+    <div class="card">
+      <div class="card-label" style="color:var(--accent4)">關係代名詞 Relatifs</div>
+      <table>
+        <tr><th>代名詞</th><th>功能</th></tr>
+        <tr><td><code>qui</code></td><td>子句主詞（人/物）</td></tr>
+        <tr><td><code>que</code></td><td>子句直接受詞（人/物）</td></tr>
+        <tr><td><code>où</code></td><td>地點或時間</td></tr>
+        <tr><td><code>dont</code></td><td>代替 de + 名詞</td></tr>
+        <tr><td><code>lequel/laquelle…</code></td><td>介系詞後（非 de/à）</td></tr>
+        <tr><td><code>auquel / auxquels</code></td><td>lequel + à 縮合</td></tr>
+        <tr><td><code>duquel / desquels</code></td><td>lequel + de 縮合</td></tr>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ④ 語序規則 -->
+<section id="placement">
+  <div class="section-title">04 — 多個代名詞語序</div>
+  <div class="card">
+    <p style="font-size:13px;color:var(--muted);margin-bottom:14px">動詞前順序（肯定句 / 否定句）</p>
+    <div class="order-box">
+      <div class="order-item" style="border-color:var(--accent4);color:var(--accent4)">me<br>te / se<br>nous / vous</div>
+      <div class="order-arrow">→</div>
+      <div class="order-item" style="border-color:var(--accent1);color:var(--accent1)">le<br>la<br>les</div>
+      <div class="order-arrow">→</div>
+      <div class="order-item" style="border-color:var(--accent3);color:var(--accent3)">lui<br>leur</div>
+      <div class="order-arrow">→</div>
+      <div class="order-item" style="border-color:var(--accent5);color:var(--accent5)">y</div>
+      <div class="order-arrow">→</div>
+      <div class="order-item" style="border-color:var(--accent2);color:var(--accent2)">en</div>
+      <div class="order-arrow">→</div>
+      <div class="order-item">動詞</div>
+    </div>
+    <table style="margin-top:16px">
+      <tr><th>例句</th><th>說明</th></tr>
+      <tr><td>Il <strong>me le</strong> donne.</td><td>me（COI 1人稱）→ le（COD）</td></tr>
+      <tr><td>Je <strong>le lui</strong> envoie.</td><td>le（COD）→ lui（COI 3人稱）</td></tr>
+      <tr><td>Elle <strong>m'en</strong> parle.</td><td>me（COI）→ en</td></tr>
+      <tr><td>Il <strong>y en</strong> a.</td><td>y → en</td></tr>
+    </table>
+  </div>
+</section>
+
+<!-- ⑤ 性數配合 -->
+<section id="agreement">
+  <div class="section-title">05 — 過去分詞性數配合規則</div>
+  <div class="card">
+    <table>
+      <tr><th>情況</th><th>配合？</th><th>配合對象</th></tr>
+      <tr>
+        <td>avoir + COD 在動詞<strong>後</strong></td>
+        <td><span class="badge badge-red">❌ 不配合</span></td>
+        <td>—</td>
+      </tr>
+      <tr>
+        <td>avoir + COD 在動詞<strong>前</strong>（le/la/les 代名詞 / que 子句）</td>
+        <td><span class="badge badge-green">✅ 配合</span></td>
+        <td>COD 的性別與數</td>
+      </tr>
+      <tr>
+        <td>être（移動/狀態動詞）</td>
+        <td><span class="badge badge-green">✅ 配合</span></td>
+        <td>主詞</td>
+      </tr>
+      <tr>
+        <td>être（代名式動詞）</td>
+        <td><span class="badge badge-green">✅ 通常配合</span></td>
+        <td>主詞（有例外）</td>
+      </tr>
+      <tr>
+        <td>en 作為 COD</td>
+        <td><span class="badge badge-red">❌ 不配合</span></td>
+        <td>—</td>
+      </tr>
+    </table>
+    <div class="note" style="margin-top:12px">
+      Les lettres qu'il a <strong>écrites</strong>. ← COD「qu'（= les lettres）」陰性複數，前置 → 配合<br>
+      Elle s'est <strong>levée</strong>. ← 代名式，配合主詞（elle）<br>
+      Il en a <strong>mangé</strong>. ← en 後不配合
+    </div>
+  </div>
+</section>
+
+<!-- ⑥ 命令式 -->
+<section id="imperative">
+  <div class="section-title">06 — 命令式（Impératif）代名詞位置</div>
+  <div class="two-col">
+    <div class="card">
+      <div class="card-label"><span class="badge badge-green">肯定命令</span> 代名詞放動詞<strong>後</strong></div>
+      <p style="font-size:13px;color:var(--muted);margin:8px 0 4px">me/te → moi/toi</p>
+      <div class="order-box" style="margin:10px 0">
+        <div class="order-item">動詞</div>
+        <div class="order-arrow">→</div>
+        <div class="order-item" style="font-size:12px">le/la/les</div>
+        <div class="order-arrow">→</div>
+        <div class="order-item" style="font-size:12px">moi/toi<br>lui/nous<br>vous/leur</div>
+        <div class="order-arrow">→</div>
+        <div class="order-item">y</div>
+        <div class="order-arrow">→</div>
+        <div class="order-item">en</div>
+      </div>
+      <table>
+        <tr><td>Donne-<strong>le-moi</strong> !</td><td>把它給我</td></tr>
+        <tr><td>Vas-<strong>y</strong> !</td><td>去吧</td></tr>
+        <tr><td>Parles-<strong>en</strong> !</td><td>談談吧</td></tr>
+        <tr><td>Dis-<strong>le-lui</strong> !</td><td>告訴他</td></tr>
+      </table>
+    </div>
+    <div class="card">
+      <div class="card-label"><span class="badge badge-red">否定命令</span> 代名詞回到動詞<strong>前</strong>（一般順序）</div>
+      <table style="margin-top:16px">
+        <tr><td>Ne <strong>le lui</strong> donne <strong>pas</strong> !</td></tr>
+        <tr><td>N'<strong>y</strong> va <strong>pas</strong> !</td></tr>
+        <tr><td>N'<strong>en</strong> parle <strong>pas</strong> !</td></tr>
+      </table>
+    </div>
+  </div>
+</section>
+
+</main>
+</body>
+</html>
