@@ -5,483 +5,211 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>法文文法總覽</title>
 <style>
-  :root {
-    --bg: #f9f8f6;
-    --surface: #ffffff;
-    --border: #e8e5e0;
-    --text: #1a1a1a;
-    --muted: #6b6560;
-    --accent1: #2d6a4f;
-    --accent2: #1d3557;
-    --accent3: #9b2226;
-    --accent4: #6a4c93;
-    --accent5: #ae6108;
-    --tag-bg: #f0ede8;
-  }
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  body {
-    font-family: 'Helvetica Neue', Arial, sans-serif;
-    background: var(--bg);
-    color: var(--text);
-    line-height: 1.65;
-    font-size: 15px;
-  }
-  header {
-    background: var(--accent2);
-    color: #fff;
-    padding: 48px 40px 36px;
-  }
-  header h1 { font-size: 28px; font-weight: 600; letter-spacing: -0.3px; }
-  header p { margin-top: 6px; opacity: 0.7; font-size: 13px; }
-  nav {
-    background: var(--surface);
-    border-bottom: 1px solid var(--border);
-    padding: 0 40px;
-    display: flex;
-    gap: 4px;
-    overflow-x: auto;
-    position: sticky;
-    top: 0;
-    z-index: 10;
-  }
-  nav a {
-    display: inline-block;
-    padding: 14px 16px;
-    color: var(--muted);
-    text-decoration: none;
-    font-size: 13px;
-    white-space: nowrap;
-    border-bottom: 2px solid transparent;
-    transition: color 0.15s, border-color 0.15s;
-  }
-  nav a:hover { color: var(--text); border-bottom-color: var(--accent2); }
-  main { max-width: 1100px; margin: 0 auto; padding: 40px 40px 80px; }
-  section { margin-bottom: 56px; }
-  .section-title {
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-    color: var(--muted);
-    margin-bottom: 20px;
-    padding-bottom: 8px;
-    border-bottom: 1px solid var(--border);
-  }
-  h2 {
-    font-size: 20px;
-    font-weight: 600;
-    margin-bottom: 4px;
-  }
-  h3 {
-    font-size: 14px;
-    font-weight: 700;
-    color: var(--muted);
-    margin: 24px 0 10px;
-    text-transform: uppercase;
-    letter-spacing: 0.8px;
-  }
-  .card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 20px 24px;
-    margin-bottom: 12px;
-  }
-  .card-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 12px;
-  }
-  .card-label {
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    margin-bottom: 8px;
-  }
-  .tag {
-    display: inline-block;
-    background: var(--tag-bg);
-    color: var(--muted);
-    font-size: 11px;
-    padding: 2px 8px;
-    border-radius: 4px;
-    margin-right: 4px;
-  }
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    font-size: 14px;
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    overflow: hidden;
-    margin-bottom: 16px;
-  }
-  th {
-    background: #f2f0ec;
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 0.8px;
-    text-transform: uppercase;
-    color: var(--muted);
-    padding: 10px 16px;
-    text-align: left;
-  }
-  td {
-    padding: 10px 16px;
-    border-top: 1px solid var(--border);
-    vertical-align: top;
-  }
-  tr:hover td { background: #fafaf8; }
-  code {
-    font-family: 'SF Mono', 'Fira Code', monospace;
-    background: var(--tag-bg);
-    padding: 2px 6px;
-    border-radius: 4px;
-    font-size: 13px;
-  }
-  .formula {
-    background: var(--accent2);
-    color: #fff;
-    font-family: 'SF Mono', monospace;
-    font-size: 13px;
-    padding: 12px 18px;
-    border-radius: 6px;
-    margin: 10px 0;
-    letter-spacing: 0.3px;
-  }
-  .formula .sep { opacity: 0.4; margin: 0 4px; }
-  .note {
-    font-size: 13px;
-    color: var(--muted);
-    margin-top: 8px;
-    padding-left: 12px;
-    border-left: 2px solid var(--border);
-  }
-  .badge {
-    display: inline-block;
-    padding: 2px 8px;
-    border-radius: 4px;
-    font-size: 11px;
-    font-weight: 700;
-  }
-  .badge-green { background: #d8f3dc; color: var(--accent1); }
-  .badge-blue { background: #dbe9f5; color: var(--accent2); }
-  .badge-red { background: #f8d7da; color: var(--accent3); }
-  .badge-purple { background: #ede0f7; color: var(--accent4); }
-  .badge-orange { background: #fde8c8; color: var(--accent5); }
-  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-  @media (max-width: 700px) {
-    header, main { padding-left: 20px; padding-right: 20px; }
-    nav { padding: 0 20px; }
-    .two-col, .card-grid { grid-template-columns: 1fr; }
-  }
-  .tense-row { display: flex; align-items: baseline; gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--border); }
-  .tense-row:last-child { border-bottom: none; }
-  .tense-name { font-weight: 600; min-width: 200px; }
-  .tense-formula { font-size: 13px; color: var(--muted); }
-  .order-box {
-    display: flex;
-    align-items: center;
-    gap: 0;
-    flex-wrap: wrap;
-    margin: 12px 0;
-  }
-  .order-item {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 6px;
-    padding: 8px 14px;
-    font-size: 13px;
-    font-weight: 600;
-    text-align: center;
-    min-width: 80px;
-  }
-  .order-arrow {
-    font-size: 16px;
-    color: var(--border);
-    padding: 0 4px;
-  }
-  .highlight { color: var(--accent3); font-weight: 700; }
+:root {
+  --bg: #f9f8f6;
+  --surface: #ffffff;
+  --border: #e8e5e0;
+  --text: #1a1a1a;
+  --muted: #6b6560;
+  --a1: #2d6a4f;
+  --a2: #1d3557;
+  --a3: #9b2226;
+  --a4: #6a4c93;
+  --a5: #ae6108;
+  --tag: #f0ede8;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Helvetica Neue',Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.65;font-size:15px}
+header{background:var(--a2);color:#fff;padding:40px 40px 28px}
+header h1{font-size:26px;font-weight:600;letter-spacing:-.3px}
+header p{margin-top:5px;opacity:.65;font-size:13px}
+nav{background:var(--surface);border-bottom:1px solid var(--border);padding:0 40px;display:flex;gap:2px;overflow-x:auto;position:sticky;top:0;z-index:10}
+.tab-btn{display:inline-block;padding:13px 16px;color:var(--muted);background:none;border:none;border-bottom:2px solid transparent;cursor:pointer;font-size:13px;white-space:nowrap;transition:color .15s,border-color .15s}
+.tab-btn:hover{color:var(--text)}
+.tab-btn.active{color:var(--a2);border-bottom-color:var(--a2);font-weight:600}
+main{max-width:1100px;margin:0 auto;padding:36px 40px 80px}
+.tab-panel{display:none}
+.tab-panel.active{display:block}
+section{margin-bottom:48px}
+.sec-label{font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin-bottom:18px;padding-bottom:8px;border-bottom:1px solid var(--border)}
+h2{font-size:19px;font-weight:600;margin-bottom:4px}
+h3{font-size:13px;font-weight:700;color:var(--muted);margin:22px 0 10px;text-transform:uppercase;letter-spacing:.8px}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:18px 22px;margin-bottom:12px}
+.card-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px}
+.card-label{font-size:11px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;margin-bottom:10px}
+table{width:100%;border-collapse:collapse;font-size:14px;background:var(--surface);border:1px solid var(--border);border-radius:8px;overflow:hidden;margin-bottom:14px}
+th{background:#f2f0ec;font-size:11px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:var(--muted);padding:9px 14px;text-align:left}
+td{padding:9px 14px;border-top:1px solid var(--border);vertical-align:top}
+tr:hover td{background:#fafaf8}
+code{font-family:'SF Mono','Fira Code',monospace;background:var(--tag);padding:2px 6px;border-radius:4px;font-size:13px}
+.formula{background:var(--a2);color:#fff;font-family:'SF Mono',monospace;font-size:13px;padding:10px 16px;border-radius:6px;margin:8px 0;letter-spacing:.3px}
+.note{font-size:13px;color:var(--muted);margin-top:8px;padding-left:10px;border-left:2px solid var(--border)}
+.badge{display:inline-block;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:700}
+.bg{background:#d8f3dc;color:var(--a1)}
+.bb{background:#dbe9f5;color:var(--a2)}
+.br{background:#f8d7da;color:var(--a3)}
+.bp{background:#ede0f7;color:var(--a4)}
+.bo{background:#fde8c8;color:var(--a5)}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.hl{color:var(--a3);font-weight:700}
+.order-box{display:flex;align-items:center;gap:0;flex-wrap:wrap;margin:10px 0}
+.order-item{background:var(--surface);border:1px solid var(--border);border-radius:6px;padding:7px 12px;font-size:13px;font-weight:600;text-align:center;min-width:72px}
+.order-arr{font-size:14px;color:#ccc;padding:0 4px}
+.eg{background:#f7f5f0;border-left:3px solid var(--a2);padding:10px 14px;border-radius:0 6px 6px 0;margin:8px 0;font-size:14px}
+.eg .pc{color:var(--a3);font-weight:600}
+.eg .imp{color:var(--a1);font-weight:600}
+.eg-note{font-size:12px;color:var(--muted);margin-top:4px}
+@media(max-width:700px){header,main{padding-left:20px;padding-right:20px}nav{padding:0 16px}.two,.card-grid{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
 
 <header>
   <h1>法文文法總覽</h1>
-  <p>時態 × 代名詞 × 句型結構 ／ DELF 備考參考</p>
+  <p>時態 · 代名詞 · 否定 · Imparfait · 時間表達 ／ DELF A2–B1 備考</p>
 </header>
 
-<nav>
-  <a href="#tenses">時態總覽</a>
-  <a href="#conjugation">時態變化</a>
-  <a href="#pronouns">代名詞分類</a>
-  <a href="#placement">語序規則</a>
-  <a href="#agreement">性數配合</a>
-  <a href="#imperative">命令式</a>
+<nav id="nav">
+  <button class="tab-btn active" onclick="showTab('t-temps',this)">① 時態</button>
+  <button class="tab-btn" onclick="showTab('t-pronoms',this)">② 代名詞</button>
+  <button class="tab-btn" onclick="showTab('t-structure',this)">③ 句型結構</button>
+  <button class="tab-btn" onclick="showTab('t-negation',this)">④ 否定句</button>
+  <button class="tab-btn" onclick="showTab('t-imparfait',this)">⑤ Imparfait 深入</button>
+  <button class="tab-btn" onclick="showTab('t-time',this)">⑥ 時間表達</button>
+  <button class="tab-btn" onclick="showTab('t-accord',this)">⑦ 配合 &amp; 動詞表</button>
 </nav>
 
 <main>
 
-<!-- ① 時態總覽 -->
-<section id="tenses">
-  <div class="section-title">01 — 時態總覽</div>
+<!-- ══════════════════════════════════════
+     TAB 1 : 時態
+══════════════════════════════════════ -->
+<div id="t-temps" class="tab-panel active">
+
+<section>
+  <div class="sec-label">01 — 時態總覽與構成</div>
   <div class="card">
-    <div class="tense-row">
-      <span class="tense-name">Présent <span class="tag">現在式</span></span>
-      <span class="tense-formula">現在習慣、事實、此刻動作</span>
-    </div>
-    <div class="tense-row">
-      <span class="tense-name">Passé récent <span class="tag">最近過去式</span></span>
-      <span class="tense-formula">venir de + inf ／ 剛發生的事</span>
-    </div>
-    <div class="tense-row">
-      <span class="tense-name">Passé composé <span class="tag">複合過去式</span></span>
-      <span class="tense-formula">avoir/être + p.p. ／ 過去已完成動作</span>
-    </div>
-    <div class="tense-row">
-      <span class="tense-name">Imparfait <span class="tag">未完成過去式</span></span>
-      <span class="tense-formula">過去持續 / 習慣 / 背景描述</span>
-    </div>
-    <div class="tense-row">
-      <span class="tense-name">Plus-que-parfait <span class="tag">愈過去式</span></span>
-      <span class="tense-formula">avoir/être（未完成）+ p.p. ／ 過去的過去</span>
-    </div>
-    <div class="tense-row">
-      <span class="tense-name">Futur proche <span class="tag">近未來式</span></span>
-      <span class="tense-formula">aller + inf ／ 即將發生</span>
-    </div>
-    <div class="tense-row">
-      <span class="tense-name">Futur simple <span class="tag">簡單未來式</span></span>
-      <span class="tense-formula">原形 + 未來語尾 ／ 未來將發生</span>
-    </div>
-    <div class="tense-row">
-      <span class="tense-name">Conditionnel présent <span class="tag">條件式現在</span></span>
-      <span class="tense-formula">假設語氣 / 禮貌請求</span>
-    </div>
-    <div class="tense-row">
-      <span class="tense-name">Conditionnel passé <span class="tag">條件式過去</span></span>
-      <span class="tense-formula">avoir/être（條件式）+ p.p. ／ 未實現假設</span>
-    </div>
-    <div class="tense-row">
-      <span class="tense-name">Subjonctif présent <span class="tag">虛擬式現在</span></span>
-      <span class="tense-formula">vouloir que / il faut que 後的子句</span>
-    </div>
+    <table>
+      <tr><th>時態</th><th>構成方式</th><th>用途</th></tr>
+      <tr><td><strong>Présent</strong></td><td>動詞變化語尾</td><td>現在習慣、事實、此刻動作</td></tr>
+      <tr><td><strong>Passé récent</strong></td><td>venir (présent) + de + inf</td><td>剛發生的事</td></tr>
+      <tr><td><strong>Passé composé</strong></td><td>avoir/être (présent) + p.p.</td><td>過去已完成的動作</td></tr>
+      <tr><td><strong>Imparfait</strong></td><td>字根(nous現在) + -ais/-ais/-ait/-ions/-iez/-aient</td><td>過去持續、習慣、背景描述</td></tr>
+      <tr><td><strong>Plus-que-parfait</strong></td><td>avoir/être (imparfait) + p.p.</td><td>過去的過去（比另一件過去事更早）</td></tr>
+      <tr><td><strong>Futur proche</strong></td><td>aller (présent) + inf</td><td>即將發生（主觀確定）</td></tr>
+      <tr><td><strong>Futur simple</strong></td><td>原形 + -ai/-as/-a/-ons/-ez/-ont</td><td>未來將發生</td></tr>
+      <tr><td><strong>Conditionnel présent</strong></td><td>未來字根 + -ais/-ais/-ait/-ions/-iez/-aient</td><td>假設、禮貌請求</td></tr>
+      <tr><td><strong>Conditionnel passé</strong></td><td>avoir/être (cond.) + p.p.</td><td>未實現假設（當時若…就會…）</td></tr>
+      <tr><td><strong>Subjonctif présent</strong></td><td>ils現在字根 + -e/-es/-e/-ions/-iez/-ent</td><td>vouloir que / il faut que 後子句</td></tr>
+    </table>
   </div>
 </section>
 
-<!-- ② 時態變化 × 句型 -->
-<section id="conjugation">
-  <div class="section-title">02 — 時態句型結構</div>
-
-  <h3>Présent 現在式</h3>
-  <div class="two-col">
-    <div class="card">
-      <div class="card-label"><span class="badge badge-green">肯定</span></div>
-      <div class="formula">S <span class="sep">+</span> [代名詞] <span class="sep">+</span> V</div>
-      <div class="note">Je <strong>le</strong> mange.</div>
-    </div>
-    <div class="card">
-      <div class="card-label"><span class="badge badge-red">否定</span></div>
-      <div class="formula">S <span class="sep">+</span> <span class="highlight">ne</span> <span class="sep">+</span> [代名詞] <span class="sep">+</span> V <span class="sep">+</span> <span class="highlight">pas</span></div>
-      <div class="note">Je <strong>ne le</strong> mange <strong>pas</strong>.</div>
-    </div>
-  </div>
-
-  <h3>Passé composé 複合過去式</h3>
-  <div class="two-col">
-    <div class="card">
-      <div class="card-label"><span class="badge badge-green">肯定</span></div>
-      <div class="formula">S <span class="sep">+</span> [代名詞] <span class="sep">+</span> avoir/être <span class="sep">+</span> p.p.</div>
-      <div class="note">Je <strong>l'</strong>ai mangé. / Elle est partie.</div>
-    </div>
-    <div class="card">
-      <div class="card-label"><span class="badge badge-red">否定</span></div>
-      <div class="formula">S <span class="sep">+</span> <span class="highlight">ne</span> <span class="sep">+</span> [代名詞] <span class="sep">+</span> avoir/être <span class="sep">+</span> <span class="highlight">pas</span> <span class="sep">+</span> p.p.</div>
-      <div class="note">Je <strong>ne l'</strong>ai <strong>pas</strong> mangé.</div>
-    </div>
-  </div>
-
-  <h3>Imparfait 未完成過去式</h3>
-  <div class="two-col">
-    <div class="card">
-      <div class="card-label"><span class="badge badge-green">肯定</span></div>
-      <div class="formula">S <span class="sep">+</span> [代名詞] <span class="sep">+</span> V<em>-ais/ait…</em></div>
-      <div class="note">Je <strong>le</strong> mangeais.</div>
-    </div>
-    <div class="card">
-      <div class="card-label"><span class="badge badge-red">否定</span></div>
-      <div class="formula">S <span class="sep">+</span> <span class="highlight">ne</span> <span class="sep">+</span> [代名詞] <span class="sep">+</span> V <span class="sep">+</span> <span class="highlight">pas</span></div>
-      <div class="note">Je <strong>ne le</strong> mangeais <strong>pas</strong>.</div>
-    </div>
-  </div>
-
-  <h3>Futur proche 近未來式 ⚠️</h3>
-  <div class="two-col">
-    <div class="card">
-      <div class="card-label"><span class="badge badge-green">肯定</span></div>
-      <div class="formula">S <span class="sep">+</span> [代名詞] <span class="sep">+</span> aller <span class="sep">+</span> inf</div>
-      <div class="note">Je <strong>vais le</strong> manger.</div>
-    </div>
-    <div class="card">
-      <div class="card-label"><span class="badge badge-red">否定</span> <span style="font-size:11px;color:var(--accent3)">代名詞位置改變！</span></div>
-      <div class="formula">S <span class="sep">+</span> <span class="highlight">ne</span> <span class="sep">+</span> aller <span class="sep">+</span> <span class="highlight">pas</span> <span class="sep">+</span> [代名詞] <span class="sep">+</span> inf</div>
-      <div class="note">Je <strong>ne vais pas le</strong> manger.</div>
-    </div>
-  </div>
-
-  <h3>Futur simple 簡單未來式</h3>
-  <div class="two-col">
-    <div class="card">
-      <div class="card-label"><span class="badge badge-green">肯定</span></div>
-      <div class="formula">S <span class="sep">+</span> [代名詞] <span class="sep">+</span> V<em>-rai/ras…</em></div>
-      <div class="note">Je <strong>le</strong> mangerai.</div>
-    </div>
-    <div class="card">
-      <div class="card-label"><span class="badge badge-red">否定</span></div>
-      <div class="formula">S <span class="sep">+</span> <span class="highlight">ne</span> <span class="sep">+</span> [代名詞] <span class="sep">+</span> V <span class="sep">+</span> <span class="highlight">pas</span></div>
-      <div class="note">Je <strong>ne le</strong> mangerai <strong>pas</strong>.</div>
-    </div>
-  </div>
-
-  <h3>Conditionnel présent 條件式現在</h3>
-  <div class="two-col">
-    <div class="card">
-      <div class="card-label"><span class="badge badge-green">肯定</span></div>
-      <div class="formula">S <span class="sep">+</span> [代名詞] <span class="sep">+</span> V<em>-rais/rait…</em></div>
-      <div class="note">Je <strong>le</strong> mangerais. / Je <strong>voudrais</strong> un café.</div>
-    </div>
-    <div class="card">
-      <div class="card-label"><span class="badge badge-red">否定</span></div>
-      <div class="formula">S <span class="sep">+</span> <span class="highlight">ne</span> <span class="sep">+</span> [代名詞] <span class="sep">+</span> V <span class="sep">+</span> <span class="highlight">pas</span></div>
-      <div class="note">Je <strong>ne le</strong> mangerais <strong>pas</strong>.</div>
-    </div>
-  </div>
-
-  <h3>Passé récent 最近過去式 ⚠️</h3>
-  <div class="two-col">
-    <div class="card">
-      <div class="card-label"><span class="badge badge-green">肯定</span></div>
-      <div class="formula">S <span class="sep">+</span> [代名詞] <span class="sep">+</span> venir de <span class="sep">+</span> inf</div>
-      <div class="note">Je <strong>viens de le</strong> manger.</div>
-    </div>
-    <div class="card">
-      <div class="card-label"><span class="badge badge-red">否定</span> <span style="font-size:11px;color:var(--accent3)">代名詞位置改變！</span></div>
-      <div class="formula">S <span class="sep">+</span> <span class="highlight">ne</span> <span class="sep">+</span> venir <span class="sep">+</span> <span class="highlight">pas de</span> <span class="sep">+</span> [代名詞] <span class="sep">+</span> inf</div>
-      <div class="note">Je <strong>ne viens pas de le</strong> manger.</div>
-    </div>
+<section>
+  <div class="sec-label">02 — Futur simple 不規則字根</div>
+  <div class="card">
+    <table>
+      <tr><th>動詞</th><th>字根</th><th>例（je）</th></tr>
+      <tr><td>être</td><td>ser-</td><td>je serai</td></tr>
+      <tr><td>avoir</td><td>aur-</td><td>j'aurai</td></tr>
+      <tr><td>aller</td><td>ir-</td><td>j'irai</td></tr>
+      <tr><td>faire</td><td>fer-</td><td>je ferai</td></tr>
+      <tr><td>venir</td><td>viendr-</td><td>je viendrai</td></tr>
+      <tr><td>pouvoir</td><td>pourr-</td><td>je pourrai</td></tr>
+      <tr><td>vouloir</td><td>voudr-</td><td>je voudrai</td></tr>
+      <tr><td>devoir</td><td>devr-</td><td>je devrai</td></tr>
+      <tr><td>savoir</td><td>saur-</td><td>je saurai</td></tr>
+      <tr><td>voir</td><td>verr-</td><td>je verrai</td></tr>
+      <tr><td>envoyer</td><td>enverr-</td><td>j'enverrai</td></tr>
+      <tr><td>tenir</td><td>tiendr-</td><td>je tiendrai</td></tr>
+      <tr><td>recevoir</td><td>recevr-</td><td>je recevrai</td></tr>
+      <tr><td>courir</td><td>courr-</td><td>je courrai</td></tr>
+      <tr><td>mourir</td><td>mourr-</td><td>je mourrai</td></tr>
+      <tr><td>appeler</td><td>appeller-</td><td>j'appellerai</td></tr>
+      <tr><td>jeter</td><td>jetter-</td><td>je jetterai</td></tr>
+      <tr><td>acheter</td><td>achèter-</td><td>j'achèterai</td></tr>
+    </table>
   </div>
 </section>
 
-<!-- ③ 代名詞分類 -->
-<section id="pronouns">
-  <div class="section-title">03 — 代名詞完整分類</div>
+</div><!-- /t-temps -->
 
+
+<!-- ══════════════════════════════════════
+     TAB 2 : 代名詞
+══════════════════════════════════════ -->
+<div id="t-pronoms" class="tab-panel">
+
+<section>
+  <div class="sec-label">01 — 代名詞總覽</div>
   <div class="card-grid">
-    <!-- 主詞 -->
+
     <div class="card">
-      <div class="card-label" style="color:var(--accent2)">主詞代名詞 Sujets</div>
+      <div class="card-label" style="color:var(--a2)">主詞 Sujets</div>
       <table>
-        <tr><th>人稱</th><th>單數</th><th>複數</th></tr>
+        <tr><th></th><th>單數</th><th>複數</th></tr>
         <tr><td>1</td><td>je</td><td>nous</td></tr>
         <tr><td>2</td><td>tu</td><td>vous</td></tr>
-        <tr><td>3 男/中</td><td>il / on</td><td>ils</td></tr>
+        <tr><td>3 男</td><td>il / on</td><td>ils</td></tr>
         <tr><td>3 女</td><td>elle</td><td>elles</td></tr>
       </table>
     </div>
 
-    <!-- COD -->
     <div class="card">
-      <div class="card-label" style="color:var(--accent1)">COD 直接受詞代名詞</div>
-      <div class="note" style="margin-bottom:10px">代替「動詞直接受詞」（無介系詞）</div>
+      <div class="card-label" style="color:var(--a1)">COD 直接受詞</div>
+      <div class="note" style="margin-bottom:8px">代替「動詞直接受詞」（無介系詞）</div>
       <table>
-        <tr><th>人稱</th><th>單數</th><th>複數</th></tr>
+        <tr><th></th><th>單數</th><th>複數</th></tr>
         <tr><td>1</td><td>me (m')</td><td>nous</td></tr>
         <tr><td>2</td><td>te (t')</td><td>vous</td></tr>
         <tr><td>3 男</td><td>le (l')</td><td>les</td></tr>
         <tr><td>3 女</td><td>la (l')</td><td>les</td></tr>
       </table>
-      <div class="note">⚠️ 複合時態：COD 在助動詞前時，過去分詞需做性數配合<br>Les lettres qu'il a <strong>écrites</strong>.</div>
+      <div class="note">複合時態：COD 在助動詞前時，過去分詞做性數配合</div>
     </div>
 
-    <!-- COI -->
     <div class="card">
-      <div class="card-label" style="color:var(--accent3)">COI 間接受詞代名詞</div>
-      <div class="note" style="margin-bottom:10px">代替「à + 人」</div>
+      <div class="card-label" style="color:var(--a3)">COI 間接受詞</div>
+      <div class="note" style="margin-bottom:8px">代替「à + 人」</div>
       <table>
-        <tr><th>人稱</th><th>單數</th><th>複數</th></tr>
+        <tr><th></th><th>單數</th><th>複數</th></tr>
         <tr><td>1</td><td>me (m')</td><td>nous</td></tr>
         <tr><td>2</td><td>te (t')</td><td>vous</td></tr>
         <tr><td>3</td><td>lui</td><td>leur</td></tr>
       </table>
-      <div class="note">✅ 複合時態：過去分詞<strong>不做</strong>性數配合</div>
+      <div class="note">複合時態：過去分詞<strong>不做</strong>性數配合</div>
     </div>
 
-    <!-- 反身 -->
     <div class="card">
-      <div class="card-label" style="color:var(--accent4)">反身代名詞 Réfléchis</div>
-      <div class="note" style="margin-bottom:10px">代名式動詞專用，助動詞一律用 être</div>
+      <div class="card-label" style="color:var(--a4)">反身代名詞 Réfléchis</div>
+      <div class="note" style="margin-bottom:8px">代名式動詞，助動詞一律用 être</div>
       <table>
         <tr><th>人稱</th><th>代名詞</th></tr>
-        <tr><td>je</td><td>me (m')</td></tr>
-        <tr><td>tu</td><td>te (t')</td></tr>
-        <tr><td>il/elle/on</td><td>se (s')</td></tr>
-        <tr><td>nous</td><td>nous</td></tr>
-        <tr><td>vous</td><td>vous</td></tr>
-        <tr><td>ils/elles</td><td>se (s')</td></tr>
+        <tr><td>je / tu</td><td>me / te (m' / t')</td></tr>
+        <tr><td>il/elle/on/ils/elles</td><td>se (s')</td></tr>
+        <tr><td>nous / vous</td><td>nous / vous</td></tr>
       </table>
-      <div class="note">Elle <strong>s'est</strong> levée. ← 過去分詞通常配合主詞</div>
+      <div class="note">Elle s'est levée. ← p.p. 通常配合主詞</div>
     </div>
 
-    <!-- EN -->
     <div class="card">
-      <div class="card-label" style="color:var(--accent5)">EN</div>
-      <div class="note" style="margin-bottom:10px">代替「de + 事物 / 數量 / 不定冠詞名詞」</div>
-      <table>
-        <tr><th>用法</th><th>例句</th></tr>
-        <tr><td>du/de la/des + 名詞</td><td>J'<strong>en</strong> veux.</td></tr>
-        <tr><td>數量</td><td>J'<strong>en</strong> ai deux.</td></tr>
-        <tr><td>de + 地方</td><td>J'<strong>en</strong> viens.</td></tr>
-        <tr><td>de + 事（avoir besoin de…）</td><td>J'<strong>en</strong> ai besoin.</td></tr>
-      </table>
-      <div class="note">⚠️ 複合時態：過去分詞<strong>不做</strong>性數配合</div>
-    </div>
-
-    <!-- Y -->
-    <div class="card">
-      <div class="card-label" style="color:var(--accent1)">Y</div>
-      <div class="note" style="margin-bottom:10px">代替「à/dans/sur/en + 地點」或「à + 事物」</div>
-      <table>
-        <tr><th>用法</th><th>例句</th></tr>
-        <tr><td>地點</td><td>J'<strong>y</strong> vais.</td></tr>
-        <tr><td>à + 事物</td><td>J'<strong>y</strong> pense.</td></tr>
-      </table>
-      <div class="note">⚠️ 人物不用 y，改用 lui/leur<br>Je pense à Marie → Je pense <strong>à elle</strong>. (非 j'y pense)</div>
-    </div>
-
-    <!-- 強調代名詞 -->
-    <div class="card">
-      <div class="card-label" style="color:var(--accent2)">強調代名詞 Toniques</div>
+      <div class="card-label" style="color:var(--a2)">強調代名詞 Toniques</div>
       <table>
         <tr><th>人稱</th><th>代名詞</th></tr>
-        <tr><td>je</td><td>moi</td></tr>
-        <tr><td>tu</td><td>toi</td></tr>
+        <tr><td>je / tu</td><td>moi / toi</td></tr>
         <tr><td>il / elle</td><td>lui / elle</td></tr>
-        <tr><td>nous</td><td>nous</td></tr>
-        <tr><td>vous</td><td>vous</td></tr>
+        <tr><td>nous / vous</td><td>nous / vous</td></tr>
         <tr><td>ils / elles</td><td>eux / elles</td></tr>
       </table>
-      <div class="note"><strong>Moi</strong>, je parle français. / C'est pour <strong>toi</strong>. / plus grand que <strong>moi</strong>.</div>
+      <div class="note"><strong>Moi</strong>, je parle. / C'est pour <strong>toi</strong>. / plus grand que <strong>moi</strong>.</div>
     </div>
 
-    <!-- 關係代名詞 -->
     <div class="card">
-      <div class="card-label" style="color:var(--accent4)">關係代名詞 Relatifs</div>
+      <div class="card-label" style="color:var(--a4)">關係代名詞 Relatifs</div>
       <table>
-        <tr><th>代名詞</th><th>功能</th></tr>
-        <tr><td><code>qui</code></td><td>子句主詞（人/物）</td></tr>
-        <tr><td><code>que</code></td><td>子句直接受詞（人/物）</td></tr>
+        <tr><th>詞</th><th>功能</th></tr>
+        <tr><td><code>qui</code></td><td>子句主詞</td></tr>
+        <tr><td><code>que</code></td><td>子句直接受詞</td></tr>
         <tr><td><code>où</code></td><td>地點或時間</td></tr>
         <tr><td><code>dont</code></td><td>代替 de + 名詞</td></tr>
         <tr><td><code>lequel/laquelle…</code></td><td>介系詞後（非 de/à）</td></tr>
@@ -489,96 +217,228 @@
         <tr><td><code>duquel / desquels</code></td><td>lequel + de 縮合</td></tr>
       </table>
     </div>
+
   </div>
 </section>
 
-<!-- ④ 語序規則 -->
-<section id="placement">
-  <div class="section-title">04 — 多個代名詞語序</div>
+<section>
+  <div class="sec-label">02 — EN：詳細用法</div>
   <div class="card">
-    <p style="font-size:13px;color:var(--muted);margin-bottom:14px">動詞前順序（肯定句 / 否定句）</p>
+    <p style="font-size:13px;color:var(--muted);margin-bottom:14px">EN 代替「de + 名詞/地點/數量」，位於動詞前（助動詞前）</p>
+    <table>
+      <tr><th>替代對象</th><th>說明</th><th>原句 → 代名詞句</th></tr>
+      <tr>
+        <td><code>du / de la / des + 名詞</code></td>
+        <td>部分冠詞名詞（不可數/複數）</td>
+        <td>Tu veux du café ? → Oui, j'<strong>en</strong> veux.</td>
+      </tr>
+      <tr>
+        <td><code>數量 + de + 名詞</code></td>
+        <td>數量需保留在句中</td>
+        <td>Tu as combien de frères ? → J'<strong>en</strong> ai <strong>deux</strong>.</td>
+      </tr>
+      <tr>
+        <td><code>un / une + 名詞</code></td>
+        <td>un/une 保留</td>
+        <td>Tu as un chien ? → Oui, j'<strong>en</strong> ai <strong>un</strong>.</td>
+      </tr>
+      <tr>
+        <td><code>de + 地方</code>（出發地）</td>
+        <td>代替來源地點</td>
+        <td>Tu viens de Paris ? → Oui, j'<strong>en</strong> viens.</td>
+      </tr>
+      <tr>
+        <td><code>de + 事物</code>（動詞搭配）</td>
+        <td>avoir besoin de / parler de / se souvenir de…</td>
+        <td>Tu as besoin de ce livre ? → Oui, j'<strong>en</strong> ai besoin.</td>
+      </tr>
+      <tr>
+        <td><code>de + 活動</code></td>
+        <td>avoir envie de / rêver de…</td>
+        <td>Tu as envie de voyager ? → Oui, j'<strong>en</strong> ai envie.</td>
+      </tr>
+    </table>
+    <div class="note" style="margin-top:4px">⚠️ EN 代替<strong>人物</strong>時通常不用（用 de lui/d'elle/d'eux） ／ 複合時態過去分詞<strong>不做</strong>性數配合</div>
+  </div>
+</section>
+
+<section>
+  <div class="sec-label">03 — Y：詳細用法</div>
+  <div class="card">
+    <p style="font-size:13px;color:var(--muted);margin-bottom:14px">Y 代替「地點介系詞 + 地方」或「à + 事物/概念」</p>
+    <table>
+      <tr><th>替代對象</th><th>說明</th><th>原句 → 代名詞句</th></tr>
+      <tr>
+        <td><code>à / dans / sur / sous / en / chez + 地方</code></td>
+        <td>靜止位置或移動目的地</td>
+        <td>Tu vas à Paris ? → Oui, j'<strong>y</strong> vais.</td>
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+        <td>Il est dans sa chambre ? → Oui, il <strong>y</strong> est.</td>
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+        <td>Le chat est sur le canapé ? → Oui, il <strong>y</strong> est.</td>
+      </tr>
+      <tr>
+        <td><code>à + 事物/概念</code></td>
+        <td>動詞 + à + 非人物受詞（penser à / répondre à / croire à…）</td>
+        <td>Tu penses à ton voyage ? → J'<strong>y</strong> pense.</td>
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+        <td>Tu as répondu à sa question ? → J'<strong>y</strong> ai répondu.</td>
+      </tr>
+    </table>
+    <div class="note">⚠️ Y 代替<strong>人物</strong>時不用，改用 lui/leur 或強調代名詞<br>Je pense à Marie → Je pense <strong>à elle</strong>. （非 j'y pense）</div>
+  </div>
+</section>
+
+</div><!-- /t-pronoms -->
+
+
+<!-- ══════════════════════════════════════
+     TAB 3 : 句型結構
+══════════════════════════════════════ -->
+<div id="t-structure" class="tab-panel">
+
+<section>
+  <div class="sec-label">01 — 代名詞語序（動詞前）</div>
+  <div class="card">
+    <p style="font-size:13px;color:var(--muted);margin-bottom:12px">多個代名詞同時出現時的固定順序</p>
     <div class="order-box">
-      <div class="order-item" style="border-color:var(--accent4);color:var(--accent4)">me<br>te / se<br>nous / vous</div>
-      <div class="order-arrow">→</div>
-      <div class="order-item" style="border-color:var(--accent1);color:var(--accent1)">le<br>la<br>les</div>
-      <div class="order-arrow">→</div>
-      <div class="order-item" style="border-color:var(--accent3);color:var(--accent3)">lui<br>leur</div>
-      <div class="order-arrow">→</div>
-      <div class="order-item" style="border-color:var(--accent5);color:var(--accent5)">y</div>
-      <div class="order-arrow">→</div>
-      <div class="order-item" style="border-color:var(--accent2);color:var(--accent2)">en</div>
-      <div class="order-arrow">→</div>
+      <div class="order-item" style="border-color:var(--a4);color:var(--a4)">ne</div>
+      <div class="order-arr">→</div>
+      <div class="order-item" style="border-color:var(--a4);color:var(--a4)">me/te/se<br>nous/vous</div>
+      <div class="order-arr">→</div>
+      <div class="order-item" style="border-color:var(--a1);color:var(--a1)">le/la/les</div>
+      <div class="order-arr">→</div>
+      <div class="order-item" style="border-color:var(--a3);color:var(--a3)">lui/leur</div>
+      <div class="order-arr">→</div>
+      <div class="order-item" style="border-color:var(--a5);color:var(--a5)">y</div>
+      <div class="order-arr">→</div>
+      <div class="order-item" style="border-color:var(--a2);color:var(--a2)">en</div>
+      <div class="order-arr">→</div>
       <div class="order-item">動詞</div>
+      <div class="order-arr">→</div>
+      <div class="order-item" style="border-color:var(--a3);color:var(--a3)">pas…</div>
     </div>
-    <table style="margin-top:16px">
+    <table style="margin-top:14px">
       <tr><th>例句</th><th>說明</th></tr>
-      <tr><td>Il <strong>me le</strong> donne.</td><td>me（COI 1人稱）→ le（COD）</td></tr>
-      <tr><td>Je <strong>le lui</strong> envoie.</td><td>le（COD）→ lui（COI 3人稱）</td></tr>
-      <tr><td>Elle <strong>m'en</strong> parle.</td><td>me（COI）→ en</td></tr>
+      <tr><td>Il <strong>me le</strong> donne.</td><td>me（COI 1p）→ le（COD）</td></tr>
+      <tr><td>Je <strong>le lui</strong> envoie.</td><td>le（COD）→ lui（COI 3p）</td></tr>
+      <tr><td>Elle <strong>m'en</strong> parle.</td><td>me → en</td></tr>
       <tr><td>Il <strong>y en</strong> a.</td><td>y → en</td></tr>
     </table>
   </div>
 </section>
 
-<!-- ⑤ 性數配合 -->
-<section id="agreement">
-  <div class="section-title">05 — 過去分詞性數配合規則</div>
-  <div class="card">
-    <table>
-      <tr><th>情況</th><th>配合？</th><th>配合對象</th></tr>
-      <tr>
-        <td>avoir + COD 在動詞<strong>後</strong></td>
-        <td><span class="badge badge-red">❌ 不配合</span></td>
-        <td>—</td>
-      </tr>
-      <tr>
-        <td>avoir + COD 在動詞<strong>前</strong>（le/la/les 代名詞 / que 子句）</td>
-        <td><span class="badge badge-green">✅ 配合</span></td>
-        <td>COD 的性別與數</td>
-      </tr>
-      <tr>
-        <td>être（移動/狀態動詞）</td>
-        <td><span class="badge badge-green">✅ 配合</span></td>
-        <td>主詞</td>
-      </tr>
-      <tr>
-        <td>être（代名式動詞）</td>
-        <td><span class="badge badge-green">✅ 通常配合</span></td>
-        <td>主詞（有例外）</td>
-      </tr>
-      <tr>
-        <td>en 作為 COD</td>
-        <td><span class="badge badge-red">❌ 不配合</span></td>
-        <td>—</td>
-      </tr>
-    </table>
-    <div class="note" style="margin-top:12px">
-      Les lettres qu'il a <strong>écrites</strong>. ← COD「qu'（= les lettres）」陰性複數，前置 → 配合<br>
-      Elle s'est <strong>levée</strong>. ← 代名式，配合主詞（elle）<br>
-      Il en a <strong>mangé</strong>. ← en 後不配合
+<section>
+  <div class="sec-label">02 — 各時態 × 肯定 / 否定 × 代名詞</div>
+
+  <h3>Présent 現在式</h3>
+  <div class="two">
+    <div class="card"><div class="card-label"><span class="badge bg">肯定</span></div>
+      <div class="formula">S + [代名詞] + V</div>
+      <div class="note">Je <strong>le</strong> vois. / Il <strong>lui</strong> parle.</div>
+    </div>
+    <div class="card"><div class="card-label"><span class="badge br">否定</span></div>
+      <div class="formula">S + <span class="hl">ne</span> + [代名詞] + V + <span class="hl">pas</span></div>
+      <div class="note">Je <strong>ne le</strong> vois <strong>pas</strong>.</div>
+    </div>
+  </div>
+
+  <h3>Passé composé 複合過去式</h3>
+  <div class="two">
+    <div class="card"><div class="card-label"><span class="badge bg">肯定</span></div>
+      <div class="formula">S + [代名詞] + aux + p.p.</div>
+      <div class="note">Je <strong>l'</strong>ai vu. / Elle <strong>lui</strong> a parlé.</div>
+    </div>
+    <div class="card"><div class="card-label"><span class="badge br">否定</span></div>
+      <div class="formula">S + <span class="hl">ne</span> + [代名詞] + aux + <span class="hl">pas</span> + p.p.</div>
+      <div class="note">Je <strong>ne l'</strong>ai <strong>pas</strong> vu.</div>
+    </div>
+  </div>
+
+  <h3>Imparfait 未完成過去式</h3>
+  <div class="two">
+    <div class="card"><div class="card-label"><span class="badge bg">肯定</span></div>
+      <div class="formula">S + [代名詞] + V-ais/ait…</div>
+      <div class="note">Je <strong>le</strong> voyais.</div>
+    </div>
+    <div class="card"><div class="card-label"><span class="badge br">否定</span></div>
+      <div class="formula">S + <span class="hl">ne</span> + [代名詞] + V + <span class="hl">pas</span></div>
+      <div class="note">Je <strong>ne le</strong> voyais <strong>pas</strong>.</div>
+    </div>
+  </div>
+
+  <h3>Futur proche 近未來式 ⚠️ 否定時代名詞位置改變</h3>
+  <div class="two">
+    <div class="card"><div class="card-label"><span class="badge bg">肯定</span></div>
+      <div class="formula">S + [代名詞] + aller + inf</div>
+      <div class="note">Je <strong>vais le</strong> voir.</div>
+    </div>
+    <div class="card"><div class="card-label"><span class="badge br">否定</span></div>
+      <div class="formula">S + <span class="hl">ne</span> + aller + <span class="hl">pas</span> + [代名詞] + inf</div>
+      <div class="note">Je <strong>ne vais pas le</strong> voir. ← 代名詞移到 pas 後</div>
+    </div>
+  </div>
+
+  <h3>Futur simple 簡單未來式</h3>
+  <div class="two">
+    <div class="card"><div class="card-label"><span class="badge bg">肯定</span></div>
+      <div class="formula">S + [代名詞] + V-rai/ras…</div>
+      <div class="note">Je <strong>le</strong> verrai.</div>
+    </div>
+    <div class="card"><div class="card-label"><span class="badge br">否定</span></div>
+      <div class="formula">S + <span class="hl">ne</span> + [代名詞] + V + <span class="hl">pas</span></div>
+      <div class="note">Je <strong>ne le</strong> verrai <strong>pas</strong>.</div>
+    </div>
+  </div>
+
+  <h3>Conditionnel présent 條件式現在</h3>
+  <div class="two">
+    <div class="card"><div class="card-label"><span class="badge bg">肯定</span></div>
+      <div class="formula">S + [代名詞] + V-rais/rait…</div>
+      <div class="note">Je <strong>le</strong> verrais. / Je <strong>voudrais</strong> un café.</div>
+    </div>
+    <div class="card"><div class="card-label"><span class="badge br">否定</span></div>
+      <div class="formula">S + <span class="hl">ne</span> + [代名詞] + V + <span class="hl">pas</span></div>
+      <div class="note">Je <strong>ne le</strong> verrais <strong>pas</strong>.</div>
+    </div>
+  </div>
+
+  <h3>Passé récent 最近過去式 ⚠️ 否定時代名詞位置改變</h3>
+  <div class="two">
+    <div class="card"><div class="card-label"><span class="badge bg">肯定</span></div>
+      <div class="formula">S + [代名詞] + venir de + inf</div>
+      <div class="note">Je <strong>viens de le</strong> voir.</div>
+    </div>
+    <div class="card"><div class="card-label"><span class="badge br">否定</span></div>
+      <div class="formula">S + <span class="hl">ne</span> + venir + <span class="hl">pas de</span> + [代名詞] + inf</div>
+      <div class="note">Je <strong>ne viens pas de le</strong> voir.</div>
     </div>
   </div>
 </section>
 
-<!-- ⑥ 命令式 -->
-<section id="imperative">
-  <div class="section-title">06 — 命令式（Impératif）代名詞位置</div>
-  <div class="two-col">
+<section>
+  <div class="sec-label">03 — 命令式（Impératif）代名詞</div>
+  <div class="two">
     <div class="card">
-      <div class="card-label"><span class="badge badge-green">肯定命令</span> 代名詞放動詞<strong>後</strong></div>
-      <p style="font-size:13px;color:var(--muted);margin:8px 0 4px">me/te → moi/toi</p>
-      <div class="order-box" style="margin:10px 0">
-        <div class="order-item">動詞</div>
-        <div class="order-arrow">→</div>
-        <div class="order-item" style="font-size:12px">le/la/les</div>
-        <div class="order-arrow">→</div>
-        <div class="order-item" style="font-size:12px">moi/toi<br>lui/nous<br>vous/leur</div>
-        <div class="order-arrow">→</div>
-        <div class="order-item">y</div>
-        <div class="order-arrow">→</div>
+      <div class="card-label"><span class="badge bg">肯定命令</span> 代名詞放動詞後</div>
+      <p style="font-size:13px;color:var(--muted);margin:6px 0 10px">me/te → moi/toi</p>
+      <div class="order-box">
+        <div class="order-item">動詞</div><div class="order-arr">→</div>
+        <div class="order-item" style="font-size:12px">le/la/les</div><div class="order-arr">→</div>
+        <div class="order-item" style="font-size:12px">moi/toi<br>lui/leur</div><div class="order-arr">→</div>
+        <div class="order-item">y</div><div class="order-arr">→</div>
         <div class="order-item">en</div>
       </div>
-      <table>
+      <table style="margin-top:10px">
         <tr><td>Donne-<strong>le-moi</strong> !</td><td>把它給我</td></tr>
         <tr><td>Vas-<strong>y</strong> !</td><td>去吧</td></tr>
         <tr><td>Parles-<strong>en</strong> !</td><td>談談吧</td></tr>
@@ -586,8 +446,8 @@
       </table>
     </div>
     <div class="card">
-      <div class="card-label"><span class="badge badge-red">否定命令</span> 代名詞回到動詞<strong>前</strong>（一般順序）</div>
-      <table style="margin-top:16px">
+      <div class="card-label"><span class="badge br">否定命令</span> 代名詞回到動詞前</div>
+      <table style="margin-top:14px">
         <tr><td>Ne <strong>le lui</strong> donne <strong>pas</strong> !</td></tr>
         <tr><td>N'<strong>y</strong> va <strong>pas</strong> !</td></tr>
         <tr><td>N'<strong>en</strong> parle <strong>pas</strong> !</td></tr>
@@ -596,6 +456,507 @@
   </div>
 </section>
 
+</div><!-- /t-structure -->
+
+
+<!-- ══════════════════════════════════════
+     TAB 4 : 否定句
+══════════════════════════════════════ -->
+<div id="t-negation" class="tab-panel">
+
+<section>
+  <div class="sec-label">01 — 否定詞總表</div>
+  <div class="card">
+    <table>
+      <tr><th>否定詞</th><th>意思</th><th>第二詞位置（複合時態）</th><th>例句</th></tr>
+      <tr><td><code>ne…pas</code></td><td>不</td><td>助動詞後、p.p.前</td><td>Je <span class="hl">ne</span> mange <span class="hl">pas</span>. / Je <span class="hl">n'</span>ai <span class="hl">pas</span> mangé.</td></tr>
+      <tr><td><code>ne…plus</code></td><td>不再</td><td>助動詞後、p.p.前</td><td>Je <span class="hl">ne</span> fume <span class="hl">plus</span>. / Je <span class="hl">n'</span>ai <span class="hl">plus</span> fumé.</td></tr>
+      <tr><td><code>ne…jamais</code></td><td>從不、永不</td><td>助動詞後、p.p.前</td><td>Je <span class="hl">ne</span> mens <span class="hl">jamais</span>. / Je <span class="hl">n'</span>ai <span class="hl">jamais</span> menti.</td></tr>
+      <tr><td><code>ne…rien</code></td><td>什麼都不</td><td>助動詞後、p.p.前</td><td>Je <span class="hl">ne</span> dis <span class="hl">rien</span>. / Je <span class="hl">n'</span>ai <span class="hl">rien</span> dit.</td></tr>
+      <tr><td><code>ne…personne</code></td><td>沒有人</td><td><span class="badge br">p.p. 後！</span></td><td>Je <span class="hl">ne</span> vois <span class="hl">personne</span>. / Je <span class="hl">n'</span>ai vu <span class="hl">personne</span>.</td></tr>
+      <tr><td><code>ne…que</code></td><td>只有（限定）</td><td>que 緊貼被限定詞前</td><td>Je <span class="hl">ne</span> mange <span class="hl">que</span> des légumes.</td></tr>
+      <tr><td><code>ne…aucun(e)</code></td><td>一個都不、毫無</td><td><span class="badge br">p.p. 後！</span>（接名詞）</td><td>Je <span class="hl">n'</span>ai <span class="hl">aucune</span> idée. / Il <span class="hl">n'</span>a fait <span class="hl">aucun</span> effort.</td></tr>
+      <tr><td><code>ne…aucunement</code></td><td>絲毫不、完全不（書面）</td><td>助動詞後、p.p.前</td><td>Cela <span class="hl">ne</span> me dérange <span class="hl">aucunement</span>.</td></tr>
+      <tr><td><code>ne…ni…ni</code></td><td>既不…也不</td><td>ni 分別置於各被否定詞前</td><td>Je <span class="hl">ne</span> mange <span class="hl">ni</span> viande <span class="hl">ni</span> poisson.</td></tr>
+      <tr><td><code>ne…guère</code></td><td>幾乎不（書面語）</td><td>助動詞後、p.p.前</td><td>Il <span class="hl">ne</span> travaille <span class="hl">guère</span>.</td></tr>
+      <tr><td><code>ne…nulle part</code></td><td>哪裡都不</td><td>助動詞後、p.p.前</td><td>Je <span class="hl">ne</span> vais <span class="hl">nulle part</span>. / Je <span class="hl">ne</span> suis allé <span class="hl">nulle part</span>.</td></tr>
+      <tr><td><code>ne…point</code></td><td>絲毫不（古典/文學）</td><td>助動詞後、p.p.前</td><td>Je <span class="hl">ne</span> sais <span class="hl">point</span>.</td></tr>
+      <tr><td><code>ne…pas encore</code></td><td>還沒</td><td>助動詞後、p.p.前</td><td>Je <span class="hl">n'</span>ai <span class="hl">pas encore</span> mangé.</td></tr>
+      <tr><td><code>ne…toujours pas</code></td><td>仍然沒有</td><td>助動詞後、p.p.前</td><td>Il <span class="hl">n'</span>a <span class="hl">toujours pas</span> répondu.</td></tr>
+      <tr><td><code>ne…pas du tout</code></td><td>完全不</td><td>助動詞後、p.p.前</td><td>Je <span class="hl">n'</span>aime <span class="hl">pas du tout</span> ça.</td></tr>
+      <tr><td><code>ne…nul(le)</code></td><td>任何…都不（書面/法律）</td><td>p.p. 後（接名詞）</td><td><span class="hl">Nul</span> <span class="hl">ne</span> peut ignorer la loi.</td></tr>
+    </table>
+  </div>
+</section>
+
+<section>
+  <div class="sec-label">02 — 各否定詞 × 時態 × 代名詞</div>
+
+  <h3>通用（pas / plus / jamais / rien / guère / nulle part…）</h3>
+  <div class="card">
+    <table>
+      <tr><th>時態</th><th>結構（以 pas 為例，其他第二詞同位置）</th></tr>
+      <tr><td>現在式</td><td>Je <span class="hl">ne</span> <strong>le</strong> mange <span class="hl">pas</span>.</td></tr>
+      <tr><td>複合過去式</td><td>Je <span class="hl">ne</span> <strong>l'</strong>ai <span class="hl">pas</span> mangé.</td></tr>
+      <tr><td>未完成過去式</td><td>Je <span class="hl">ne</span> <strong>le</strong> mangeais <span class="hl">pas</span>.</td></tr>
+      <tr><td>近未來式</td><td>Je <span class="hl">ne</span> vais <span class="hl">pas</span> <strong>le</strong> manger. ← 代名詞移到 pas 後</td></tr>
+      <tr><td>簡單未來式</td><td>Je <span class="hl">ne</span> <strong>le</strong> mangerai <span class="hl">pas</span>.</td></tr>
+      <tr><td>條件式現在</td><td>Je <span class="hl">ne</span> <strong>le</strong> mangerais <span class="hl">pas</span>.</td></tr>
+    </table>
+  </div>
+
+  <h3>personne — p.p. 後</h3>
+  <div class="card">
+    <table>
+      <tr><th>時態</th><th>結構</th></tr>
+      <tr><td>現在式</td><td>Je <span class="hl">ne</span> vois <span class="hl">personne</span>.</td></tr>
+      <tr><td>複合過去式</td><td>Je <span class="hl">n'</span>ai vu <span class="hl">personne</span>. ← personne 在 vu 後</td></tr>
+    </table>
+  </div>
+
+  <h3>aucun(e) — 性數配合 + p.p. 後</h3>
+  <div class="card">
+    <table>
+      <tr><th>性別</th><th>例句</th></tr>
+      <tr><td>陽性</td><td>Je <span class="hl">n'</span>ai vu <span class="hl">aucun</span> film.</td></tr>
+      <tr><td>陰性</td><td>Je <span class="hl">n'</span>ai <span class="hl">aucune</span> idée.</td></tr>
+    </table>
+    <div class="note">aucun 是形容詞，修飾名詞，須與名詞陰陽性配合</div>
+  </div>
+
+  <h3>ni…ni — 兩個成分分別加 ni</h3>
+  <div class="card">
+    <table>
+      <tr><th>類型</th><th>例句</th></tr>
+      <tr><td>否定兩名詞</td><td>Je <span class="hl">ne</span> mange <span class="hl">ni</span> viande <span class="hl">ni</span> poisson.</td></tr>
+      <tr><td>否定兩動詞</td><td>Il <span class="hl">ne</span> chante <span class="hl">ni</span> ne danse.</td></tr>
+      <tr><td>複合時態</td><td>Je <span class="hl">n'</span>ai <span class="hl">ni</span> mangé <span class="hl">ni</span> bu.</td></tr>
+    </table>
+    <div class="note">⚠️ ni…ni 後的名詞不加冠詞：ni pain ni vin（非 ni du pain ni du vin）</div>
+  </div>
+
+  <h3>ne…que — 限定「只有」</h3>
+  <div class="card">
+    <table>
+      <tr><th>限定對象</th><th>例句</th></tr>
+      <tr><td>受詞</td><td>Je <span class="hl">ne</span> lis <span class="hl">que</span> des romans.</td></tr>
+      <tr><td>複合時態</td><td>Je <span class="hl">n'</span>ai <span class="hl">que</span> mangé une pomme. ← que 在 p.p. 前</td></tr>
+      <tr><td>地點/時間</td><td>Il arrive <span class="hl">qu'</span>à midi.</td></tr>
+    </table>
+    <div class="note">⚠️ ne…que 是限定語氣，不是真正否定，後面冠詞不改為 de</div>
+  </div>
+</section>
+
+<section>
+  <div class="sec-label">03 — 否定句特殊規則</div>
+  <div class="card">
+    <table>
+      <tr><th>規則</th><th>說明</th><th>例句</th></tr>
+      <tr><td>不定/部分冠詞 → de</td><td>pas/plus/jamais 後的 un/une/des/du/de la 變成 de</td><td>J'ai <strong>un</strong> chat. → Je <span class="hl">n'</span>ai <span class="hl">pas de</span> chat.</td></tr>
+      <tr><td>être 後例外</td><td>être 後的冠詞不改</td><td>C'est <strong>une</strong> erreur. → Ce <span class="hl">n'</span>est <span class="hl">pas une</span> erreur.</td></tr>
+      <tr><td>ne…que 後例外</td><td>que 後冠詞不改</td><td>Je <span class="hl">ne</span> lis <span class="hl">que des</span> romans.</td></tr>
+      <tr><td>不定式否定</td><td>ne pas / ne jamais 一起放在原形動詞前</td><td>Il m'a dit de <span class="hl">ne pas</span> partir.</td></tr>
+      <tr><td>口語省略 ne</td><td>口語常只留第二詞</td><td>Je sais <span class="hl">pas</span>. / T'as <span class="hl">rien</span> compris.</td></tr>
+    </table>
+  </div>
+</section>
+
+</div><!-- /t-negation -->
+
+
+<!-- ══════════════════════════════════════
+     TAB 5 : Imparfait 深入
+══════════════════════════════════════ -->
+<div id="t-imparfait" class="tab-panel">
+
+<section>
+  <div class="sec-label">01 — Imparfait 用法</div>
+  <div class="card-grid">
+    <div class="card">
+      <div class="card-label" style="color:var(--a1)">① 過去持續進行中的動作</div>
+      <p style="font-size:13px">事件發生時正在進行的背景動作</p>
+      <div class="eg">Je <span class="imp">regardais</span> la télé quand il <span class="pc">est arrivé</span>.</div>
+    </div>
+    <div class="card">
+      <div class="card-label" style="color:var(--a1)">② 過去習慣/反覆動作</div>
+      <p style="font-size:13px">過去經常做的事，搭配 toujours/souvent/tous les jours</p>
+      <div class="eg">Quand j'<span class="imp">étais</span> enfant, je <span class="imp">jouais</span> au foot tous les jours.</div>
+    </div>
+    <div class="card">
+      <div class="card-label" style="color:var(--a1)">③ 過去狀態、感受、描述</div>
+      <p style="font-size:13px">être / avoir / vouloir / penser / croire / savoir 等狀態動詞</p>
+      <div class="eg">Il <span class="imp">faisait</span> beau. Elle <span class="imp">avait</span> peur.</div>
+    </div>
+    <div class="card">
+      <div class="card-label" style="color:var(--a1)">④ 禮貌語氣（現在）</div>
+      <p style="font-size:13px">用 imparfait 表達比現在式更委婉的請求</p>
+      <div class="eg">Je <span class="imp">voulais</span> vous demander quelque chose. （我想請問…）</div>
+    </div>
+    <div class="card">
+      <div class="card-label" style="color:var(--a1)">⑤ si + imparfait 假設句</div>
+      <p style="font-size:13px">表達未實現的假設（主句用條件式）</p>
+      <div class="eg">Si j'<span class="imp">avais</span> le temps, je <span class="imp" style="color:var(--a4)">voyagerais</span>.</div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="sec-label">02 — Imparfait 變位規則</div>
+  <div class="card">
+    <p style="font-size:13px;color:var(--muted);margin-bottom:10px">字根：nous 現在式去掉 -ons ／ 語尾：-ais / -ais / -ait / -ions / -iez / -aient</p>
+    <table>
+      <tr><th>動詞</th><th>nous 現在式</th><th>字根</th><th>je</th><th>tu</th><th>il/elle</th><th>nous</th><th>vous</th><th>ils/elles</th></tr>
+      <tr><td>parler</td><td>parlons</td><td>parl-</td><td>parlais</td><td>parlais</td><td>parlait</td><td>parlions</td><td>parliez</td><td>parlaient</td></tr>
+      <tr><td>finir</td><td>finissons</td><td>finiss-</td><td>finissais</td><td>finissais</td><td>finissait</td><td>finissions</td><td>finissiez</td><td>finissaient</td></tr>
+      <tr><td>avoir</td><td>avons</td><td>av-</td><td>avais</td><td>avais</td><td>avait</td><td>avions</td><td>aviez</td><td>avaient</td></tr>
+      <tr><td><strong>être</strong></td><td>—</td><td><strong>ét-</strong></td><td><strong>étais</strong></td><td><strong>étais</strong></td><td><strong>était</strong></td><td><strong>étions</strong></td><td><strong>étiez</strong></td><td><strong>étaient</strong></td></tr>
+      <tr><td>aller</td><td>allons</td><td>all-</td><td>allais</td><td>allais</td><td>allait</td><td>allions</td><td>alliez</td><td>allaient</td></tr>
+      <tr><td>faire</td><td>faisons</td><td>fais-</td><td>faisais</td><td>faisais</td><td>faisait</td><td>faisions</td><td>faisiez</td><td>faisaient</td></tr>
+      <tr><td>venir</td><td>venons</td><td>ven-</td><td>venais</td><td>venais</td><td>venait</td><td>venions</td><td>veniez</td><td>venaient</td></tr>
+      <tr><td>voir</td><td>voyons</td><td>voy-</td><td>voyais</td><td>voyais</td><td>voyait</td><td>voyions</td><td>voyiez</td><td>voyaient</td></tr>
+      <tr><td>prendre</td><td>prenons</td><td>pren-</td><td>prenais</td><td>prenais</td><td>prenait</td><td>prenions</td><td>preniez</td><td>prenaient</td></tr>
+      <tr><td>pouvoir</td><td>pouvons</td><td>pouv-</td><td>pouvais</td><td>pouvais</td><td>pouvait</td><td>pouvions</td><td>pouviez</td><td>pouvaient</td></tr>
+      <tr><td>vouloir</td><td>voulons</td><td>voul-</td><td>voulais</td><td>voulais</td><td>voulait</td><td>voulions</td><td>vouliez</td><td>voulaient</td></tr>
+      <tr><td>savoir</td><td>savons</td><td>sav-</td><td>savais</td><td>savais</td><td>savait</td><td>savions</td><td>saviez</td><td>savaient</td></tr>
+      <tr><td>devoir</td><td>devons</td><td>dev-</td><td>devais</td><td>devais</td><td>devait</td><td>devions</td><td>deviez</td><td>devaient</td></tr>
+      <tr><td>dire</td><td>disons</td><td>dis-</td><td>disais</td><td>disais</td><td>disait</td><td>disions</td><td>disiez</td><td>disaient</td></tr>
+      <tr><td>boire</td><td>buvons</td><td>buv-</td><td>buvais</td><td>buvais</td><td>buvait</td><td>buvions</td><td>buviez</td><td>buvaient</td></tr>
+      <tr><td>croire</td><td>croyons</td><td>croy-</td><td>croyais</td><td>croyais</td><td>croyait</td><td>croyions</td><td>croyiez</td><td>croyaient</td></tr>
+      <tr><td>connaître</td><td>connaissons</td><td>connaiss-</td><td>connaissais</td><td>connaissais</td><td>connaissait</td><td>connaissions</td><td>connaissiez</td><td>connaissaient</td></tr>
+      <tr><td>lire</td><td>lisons</td><td>lis-</td><td>lisais</td><td>lisais</td><td>lisait</td><td>lisions</td><td>lisiez</td><td>lisaient</td></tr>
+      <tr><td>écrire</td><td>écrivons</td><td>écriv-</td><td>écrivais</td><td>écrivais</td><td>écrivait</td><td>écrivions</td><td>écriviez</td><td>écrivaient</td></tr>
+      <tr><td>mettre</td><td>mettons</td><td>mett-</td><td>mettais</td><td>mettais</td><td>mettait</td><td>mettions</td><td>mettiez</td><td>mettaient</td></tr>
+    </table>
+    <div class="note">⚠️ 特殊：manger → mangeais（-ge- 保留 e）/ commencer → commençais（c→ç）</div>
+    <div class="note">⚠️ <strong>être</strong> 是唯一真正不規則的 imparfait，字根 ét- 不來自 nous 現在式</div>
+  </div>
+</section>
+
+<section>
+  <div class="sec-label">03 — Imparfait vs Passé composé：如何選擇</div>
+  <div class="two">
+    <div class="card">
+      <div class="card-label" style="color:var(--a1)">用 Imparfait <span class="badge bg">IMP</span></div>
+      <table>
+        <tr><th>情況</th><th>關鍵詞</th></tr>
+        <tr><td>進行中的背景動作</td><td>quand, pendant que, alors que</td></tr>
+        <tr><td>過去習慣/反覆</td><td>toujours, souvent, tous les jours, chaque matin</td></tr>
+        <tr><td>狀態/感受/描述</td><td>être, avoir, aimer, penser, croire, savoir, vouloir</td></tr>
+        <tr><td>si 假設句</td><td>si + imparfait</td></tr>
+      </table>
+    </div>
+    <div class="card">
+      <div class="card-label" style="color:var(--a3)">用 Passé composé <span class="badge br">PC</span></div>
+      <table>
+        <tr><th>情況</th><th>關鍵詞</th></tr>
+        <tr><td>完成的單一動作</td><td>soudain, tout à coup, un jour</td></tr>
+        <tr><td>有明確時間點/次數</td><td>hier, le 3 mai, deux fois, pendant 3 ans</td></tr>
+        <tr><td>打斷進行中動作的事件</td><td>quand（主句用 PC）</td></tr>
+        <tr><td>連續的過去動作</td><td>d'abord…ensuite…puis…enfin</td></tr>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="sec-label">04 — A2 寫作練習（Imparfait + Passé composé）</div>
+  <p style="font-size:13px;color:var(--muted);margin-bottom:16px"><span class="badge bg">IMP</span> = imparfait（背景/習慣/狀態）／ <span class="badge br">PC</span> = passé composé（完成動作）</p>
+
+  <div class="card" style="margin-bottom:12px">
+    <div class="card-label">範例 ① — 打斷型（事件打斷進行中動作）</div>
+    <div class="eg">
+      Hier soir, je <span class="imp">regardais</span> <span class="badge bg">IMP</span> la télévision quand mon téléphone <span class="pc">a sonné</span> <span class="badge br">PC</span>. C'<span class="imp">était</span> <span class="badge bg">IMP</span> mon ami Lucas. Il m'<span class="pc">a dit</span> <span class="badge br">PC</span> qu'il <span class="imp">voulait</span> <span class="badge bg">IMP</span> me voir.
+    </div>
+    <div class="eg-note">regardais ← 進行中背景 ／ a sonné ← 打斷的事件 ／ était ← 狀態 ／ a dit ← 完成動作 ／ voulait ← 當時的狀態/感受</div>
+  </div>
+
+  <div class="card" style="margin-bottom:12px">
+    <div class="card-label">範例 ② — 童年習慣型</div>
+    <div class="eg">
+      Quand j'<span class="imp">étais</span> <span class="badge bg">IMP</span> enfant, j'<span class="imp">habitais</span> <span class="badge bg">IMP</span> à Taipei avec ma famille. Nous <span class="imp">allions</span> <span class="badge bg">IMP</span> à la mer tous les étés. Mais un jour, mon père <span class="pc">a trouvé</span> <span class="badge br">PC</span> un travail à Kaohsiung et nous <span class="pc">avons déménagé</span> <span class="badge br">PC</span>.
+    </div>
+    <div class="eg-note">étais/habitais/allions ← 過去習慣與狀態 ／ a trouvé/avons déménagé ← 過去某個時間點發生的事件</div>
+  </div>
+
+  <div class="card" style="margin-bottom:12px">
+    <div class="card-label">範例 ③ — 旅行敘述型</div>
+    <div class="eg">
+      L'été dernier, je <span class="pc">suis parti</span> <span class="badge br">PC</span> en France. Il <span class="imp">faisait</span> <span class="badge bg">IMP</span> très chaud et les rues <span class="imp">étaient</span> <span class="badge bg">IMP</span> pleines de touristes. Un matin, je <span class="pc">me suis perdu</span> <span class="badge br">PC</span> dans le métro. Je <span class="imp">ne savais</span> <span class="badge bg">IMP</span> pas quoi faire, alors j'<span class="pc">ai demandé</span> <span class="badge br">PC</span> de l'aide à une dame.
+    </div>
+    <div class="eg-note">suis parti ← 出發的事件 ／ faisait/étaient ← 當時天氣與環境描述 ／ me suis perdu ← 發生的事件 ／ ne savais pas ← 當時的狀態 ／ ai demandé ← 採取的行動</div>
+  </div>
+
+  <div class="card" style="margin-bottom:12px">
+    <div class="card-label">範例 ④ — 日記型</div>
+    <div class="eg">
+      Ce matin, je <span class="pc">me suis levé</span> <span class="badge br">PC</span> à sept heures. Il <span class="imp">pleuvait</span> <span class="badge bg">IMP</span> dehors et je <span class="imp">n'avais</span> <span class="badge bg">IMP</span> pas envie de sortir. Mais je <span class="pc">suis quand même sorti</span> <span class="badge br">PC</span> parce que j'<span class="pc">avais</span> un rendez-vous important.
+    </div>
+    <div class="eg-note">me suis levé ← 起床的事件 ／ pleuvait ← 天氣描述 ／ n'avais pas envie ← 感受狀態 ／ suis sorti ← 做了的動作（儘管不情願）</div>
+  </div>
+
+  <div class="card">
+    <div class="card-label">範例 ⑤ — 故事型（連貫敘事）</div>
+    <div class="eg">
+      Il <span class="imp">était</span> <span class="badge bg">IMP</span> tard le soir. Marie <span class="imp">marchait</span> <span class="badge bg">IMP</span> seule dans la rue quand elle <span class="pc">a entendu</span> <span class="badge br">PC</span> un bruit étrange. Elle <span class="pc">s'est arrêtée</span> <span class="badge br">PC</span> et <span class="pc">a regardé</span> <span class="badge br">PC</span> autour d'elle. Il n'y <span class="imp">avait</span> <span class="badge bg">IMP</span> personne. Elle <span class="pc">a décidé</span> <span class="badge br">PC</span> de rentrer vite chez elle.
+    </div>
+    <div class="eg-note">était/marchait ← 背景狀態與進行中動作 ／ a entendu/s'est arrêtée/a regardé/a décidé ← 連續發生的事件 ／ avait ← 描述當時的狀況</div>
+  </div>
+</section>
+
+</div><!-- /t-imparfait -->
+
+
+<!-- ══════════════════════════════════════
+     TAB 6 : 時間表達
+══════════════════════════════════════ -->
+<div id="t-time" class="tab-panel">
+
+<section>
+  <div class="sec-label">01 — 時間表達總表</div>
+  <div class="card">
+    <table>
+      <tr><th>表達方式</th><th>意思</th><th>搭配時態</th><th>例句</th></tr>
+      <tr>
+        <td><code>il y a + 時間長度</code></td>
+        <td>…前（過去距今）</td>
+        <td>複合過去式</td>
+        <td>Je suis arrivé <strong>il y a deux ans</strong>.</td>
+      </tr>
+      <tr>
+        <td><code>depuis + 時間長度/日期</code></td>
+        <td>從…開始至今（仍持續）</td>
+        <td><strong>現在式</strong>（動作仍持續）</td>
+        <td>J'habite ici <strong>depuis 3 ans</strong>. / <strong>depuis lundi</strong>.</td>
+      </tr>
+      <tr>
+        <td><code>ça fait + 時間 + que</code></td>
+        <td>已經…了（同 depuis，口語）</td>
+        <td>現在式</td>
+        <td><strong>Ça fait 3 ans que</strong> j'habite ici.</td>
+      </tr>
+      <tr>
+        <td><code>il y a + 時間 + que</code></td>
+        <td>已經…了（書面，同 depuis）</td>
+        <td>現在式</td>
+        <td><strong>Il y a 3 ans que</strong> je travaille ici.</td>
+      </tr>
+      <tr>
+        <td><code>voilà + 時間 + que</code></td>
+        <td>已經…了（書面/強調）</td>
+        <td>現在式</td>
+        <td><strong>Voilà 3 ans que</strong> je t'attends !</td>
+      </tr>
+      <tr>
+        <td><code>pendant + 時間長度</code></td>
+        <td>持續了…（已結束的期間）</td>
+        <td>複合過去式 / 未完成過去式</td>
+        <td>J'ai étudié <strong>pendant deux heures</strong>.</td>
+      </tr>
+      <tr>
+        <td><code>en + 時間長度</code></td>
+        <td>花了…時間（完成所需時間）</td>
+        <td>複合過去式</td>
+        <td>Il a fini le livre <strong>en une heure</strong>.</td>
+      </tr>
+      <tr>
+        <td><code>dans + 時間長度</code></td>
+        <td>再過…後（未來）</td>
+        <td>近未來式 / 簡單未來式</td>
+        <td>Je pars <strong>dans 3 jours</strong>.</td>
+      </tr>
+      <tr>
+        <td><code>pour + 時間長度</code></td>
+        <td>預計持續…（未來計畫）</td>
+        <td>近未來式</td>
+        <td>Je pars <strong>pour une semaine</strong>.</td>
+      </tr>
+      <tr>
+        <td><code>dès + 時間/事件</code></td>
+        <td>一…就，從…開始</td>
+        <td>各時態</td>
+        <td><strong>Dès demain</strong>, je commence. / <strong>Dès son arrivée</strong>, il a appelé.</td>
+      </tr>
+      <tr>
+        <td><code>depuis que + 子句</code></td>
+        <td>自從…以來</td>
+        <td>現在式（主句）</td>
+        <td><strong>Depuis qu'</strong>il est parti, je suis triste.</td>
+      </tr>
+      <tr>
+        <td><code>avant de + inf</code></td>
+        <td>在…之前</td>
+        <td>各時態</td>
+        <td><strong>Avant de</strong> partir, j'ai appelé ma mère.</td>
+      </tr>
+      <tr>
+        <td><code>après avoir/être + p.p.</code></td>
+        <td>在…之後</td>
+        <td>各時態</td>
+        <td><strong>Après avoir mangé</strong>, il est sorti.</td>
+      </tr>
+    </table>
+  </div>
+</section>
+
+<section>
+  <div class="sec-label">02 — 容易混淆比較</div>
+  <div class="two">
+    <div class="card">
+      <div class="card-label" style="color:var(--a3)">pendant vs en vs depuis</div>
+      <table>
+        <tr><th>詞</th><th>重點</th><th>例句</th></tr>
+        <tr><td><strong>pendant</strong></td><td>持續了多久（完成/結束）</td><td>J'ai dormi <strong>pendant</strong> 10h.</td></tr>
+        <tr><td><strong>en</strong></td><td>花了多長時間完成</td><td>J'ai fini <strong>en</strong> 10 minutes.</td></tr>
+        <tr><td><strong>depuis</strong></td><td>從某時開始到現在仍持續</td><td>Je dors <strong>depuis</strong> 8h.</td></tr>
+      </table>
+    </div>
+    <div class="card">
+      <div class="card-label" style="color:var(--a3)">il y a vs dans</div>
+      <table>
+        <tr><th>詞</th><th>重點</th><th>例句</th></tr>
+        <tr><td><strong>il y a</strong></td><td>過去距今多久前</td><td>Je suis arrivé <strong>il y a</strong> 2 ans.</td></tr>
+        <tr><td><strong>dans</strong></td><td>未來再過多久後</td><td>Je partirai <strong>dans</strong> 2 ans.</td></tr>
+      </table>
+    </div>
+    <div class="card">
+      <div class="card-label" style="color:var(--a3)">depuis vs ça fait…que</div>
+      <table>
+        <tr><th>表達</th><th>例句</th></tr>
+        <tr><td>depuis</td><td>Je vis ici <strong>depuis</strong> 5 ans.</td></tr>
+        <tr><td>ça fait…que</td><td><strong>Ça fait 5 ans que</strong> je vis ici.</td></tr>
+        <tr><td>il y a…que</td><td><strong>Il y a 5 ans que</strong> je vis ici.</td></tr>
+      </table>
+      <div class="note">三者意思相同，可互換，ça fait 最口語</div>
+    </div>
+    <div class="card">
+      <div class="card-label" style="color:var(--a3)">depuis + 否定句 → 複合過去式</div>
+      <div class="note" style="margin-top:6px">depuis 一般搭配現在式，但否定「自從…就沒有」用複合過去式：</div>
+      <div class="eg" style="margin-top:8px">Je <strong>n'ai pas mangé</strong> depuis ce matin. （自今早就沒吃）</div>
+    </div>
+  </div>
+</section>
+
+</div><!-- /t-time -->
+
+
+<!-- ══════════════════════════════════════
+     TAB 7 : 配合 & 動詞表
+══════════════════════════════════════ -->
+<div id="t-accord" class="tab-panel">
+
+<section>
+  <div class="sec-label">01 — 過去分詞性數配合規則</div>
+  <div class="card">
+    <table>
+      <tr><th>情況</th><th>配合？</th><th>配合對象</th></tr>
+      <tr><td>avoir + COD 在動詞後</td><td><span class="badge br">❌ 不配合</span></td><td>—</td></tr>
+      <tr><td>avoir + COD 在動詞前（le/la/les 代名詞 / que 子句）</td><td><span class="badge bg">✅ 配合</span></td><td>COD 的性別與數</td></tr>
+      <tr><td>être（移動/狀態動詞）</td><td><span class="badge bg">✅ 配合</span></td><td>主詞</td></tr>
+      <tr><td>être（代名式動詞）</td><td><span class="badge bg">✅ 通常配合</span></td><td>主詞（有例外）</td></tr>
+      <tr><td>en 作為 COD</td><td><span class="badge br">❌ 不配合</span></td><td>—</td></tr>
+    </table>
+    <div class="note">Les lettres qu'il a <strong>écrites</strong>. ← COD「qu'（=les lettres）」陰性複數，前置 → 配合<br>Elle s'est <strong>levée</strong>. ← 代名式，配合主詞（elle）<br>Il en a <strong>mangé</strong>. ← en 後不配合</div>
+  </div>
+</section>
+
+<section>
+  <div class="sec-label">02 — 用 être 的動詞（passé composé）</div>
+  <div class="card">
+    <p style="font-size:13px;color:var(--muted);margin-bottom:12px">過去分詞須與<strong>主詞</strong>做陰陽性 / 單複數配合</p>
+    <table>
+      <tr><th>動詞</th><th>過去分詞</th><th>意思</th></tr>
+      <tr><td>aller</td><td>allé(e)(s)</td><td>去</td></tr>
+      <tr><td>venir</td><td>venu(e)(s)</td><td>來</td></tr>
+      <tr><td>arriver</td><td>arrivé(e)(s)</td><td>到達</td></tr>
+      <tr><td>partir</td><td>parti(e)(s)</td><td>離開</td></tr>
+      <tr><td>entrer</td><td>entré(e)(s)</td><td>進入</td></tr>
+      <tr><td>sortir</td><td>sorti(e)(s)</td><td>出去</td></tr>
+      <tr><td>naître</td><td>né(e)(s)</td><td>出生</td></tr>
+      <tr><td>mourir</td><td>mort(e)(s)</td><td>死亡</td></tr>
+      <tr><td>monter</td><td>monté(e)(s)</td><td>上去</td></tr>
+      <tr><td>descendre</td><td>descendu(e)(s)</td><td>下來</td></tr>
+      <tr><td>rester</td><td>resté(e)(s)</td><td>留下</td></tr>
+      <tr><td>tomber</td><td>tombé(e)(s)</td><td>跌倒</td></tr>
+      <tr><td>retourner</td><td>retourné(e)(s)</td><td>返回</td></tr>
+      <tr><td>rentrer</td><td>rentré(e)(s)</td><td>回家</td></tr>
+      <tr><td>revenir</td><td>revenu(e)(s)</td><td>回來</td></tr>
+      <tr><td>devenir</td><td>devenu(e)(s)</td><td>變成</td></tr>
+      <tr><td>passer</td><td>passé(e)(s)</td><td>經過（無受詞時）</td></tr>
+      <tr><td>repartir</td><td>reparti(e)(s)</td><td>再出發</td></tr>
+      <tr><td>intervenir</td><td>intervenu(e)(s)</td><td>介入</td></tr>
+      <tr><td>parvenir</td><td>parvenu(e)(s)</td><td>到達/成功</td></tr>
+    </table>
+    <div class="note">⚠️ monter / descendre / sortir / rentrer / passer 若帶直接受詞（transitif），改用 avoir<br>Elle <strong>est montée</strong>. ← être（無受詞）/ Elle <strong>a monté</strong> les valises. ← avoir（有受詞）</div>
+    <div class="note">⚠️ 所有<strong>代名式動詞</strong>（se lever, se souvenir…）也用 être</div>
+  </div>
+</section>
+
+<section>
+  <div class="sec-label">03 — 用 avoir 的不規則過去分詞</div>
+  <div class="card">
+    <div class="card-grid">
+      <table>
+        <tr><th>動詞</th><th>過去分詞</th></tr>
+        <tr><td>avoir</td><td>eu</td></tr>
+        <tr><td>être</td><td>été</td></tr>
+        <tr><td>faire</td><td>fait</td></tr>
+        <tr><td>dire</td><td>dit</td></tr>
+        <tr><td>écrire</td><td>écrit</td></tr>
+        <tr><td>lire</td><td>lu</td></tr>
+        <tr><td>voir</td><td>vu</td></tr>
+        <tr><td>savoir</td><td>su</td></tr>
+        <tr><td>pouvoir</td><td>pu</td></tr>
+        <tr><td>vouloir</td><td>voulu</td></tr>
+        <tr><td>devoir</td><td>dû</td></tr>
+        <tr><td>mettre</td><td>mis</td></tr>
+      </table>
+      <table>
+        <tr><th>動詞</th><th>過去分詞</th></tr>
+        <tr><td>prendre</td><td>pris</td></tr>
+        <tr><td>comprendre</td><td>compris</td></tr>
+        <tr><td>apprendre</td><td>appris</td></tr>
+        <tr><td>boire</td><td>bu</td></tr>
+        <tr><td>croire</td><td>cru</td></tr>
+        <tr><td>connaître</td><td>connu</td></tr>
+        <tr><td>recevoir</td><td>reçu</td></tr>
+        <tr><td>ouvrir</td><td>ouvert</td></tr>
+        <tr><td>offrir</td><td>offert</td></tr>
+        <tr><td>souffrir</td><td>souffert</td></tr>
+        <tr><td>découvrir</td><td>découvert</td></tr>
+        <tr><td>vivre</td><td>vécu</td></tr>
+      </table>
+      <table>
+        <tr><th>動詞</th><th>過去分詞</th></tr>
+        <tr><td>suivre</td><td>suivi</td></tr>
+        <tr><td>peindre</td><td>peint</td></tr>
+        <tr><td>éteindre</td><td>éteint</td></tr>
+        <tr><td>atteindre</td><td>atteint</td></tr>
+        <tr><td>joindre</td><td>joint</td></tr>
+        <tr><td>plaire</td><td>plu</td></tr>
+        <tr><td>rire</td><td>ri</td></tr>
+        <tr><td>conduire</td><td>conduit</td></tr>
+        <tr><td>construire</td><td>construit</td></tr>
+        <tr><td>traduire</td><td>traduit</td></tr>
+        <tr><td>tenir</td><td>tenu</td></tr>
+        <tr><td>courir</td><td>couru</td></tr>
+      </table>
+    </div>
+    <div class="note">⚠️ être（être → été）雖然用 avoir 當助動詞：J'ai été malade.</div>
+  </div>
+</section>
+
+</div><!-- /t-accord -->
+
 </main>
+
+<script>
+function showTab(id, btn) {
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  btn.classList.add('active');
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+</script>
 </body>
 </html>
