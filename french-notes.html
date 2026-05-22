@@ -1,0 +1,1027 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>法文學習總覽 · Le Coq Français</title>
+  <style>
+    /* ── Reset & Base ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif;
+      background: #f7f8fa;
+      color: #2c2c2c;
+      line-height: 1.7;
+    }
+    a { color: #3b6ed4; text-decoration: none; }
+    a:hover { text-decoration: underline; color: #1a4ab0; }
+
+    /* ── Header ── */
+    header {
+      background: linear-gradient(135deg, #1a3a6b 0%, #2f6eb5 100%);
+      color: #fff;
+      padding: 2.2rem 1.5rem 1.6rem;
+      text-align: center;
+    }
+    header .rooster { font-size: 2.4rem; }
+    header h1 { font-size: 1.8rem; font-weight: 700; margin-top: .3rem; letter-spacing: .05em; }
+    header p { font-size: .95rem; opacity: .85; margin-top: .4rem; }
+    header .source-link {
+      display: inline-block; margin-top: .8rem;
+      background: rgba(255,255,255,.15); border: 1px solid rgba(255,255,255,.35);
+      color: #fff; padding: .25rem .9rem; border-radius: 20px; font-size: .82rem;
+      transition: background .2s;
+    }
+    header .source-link:hover { background: rgba(255,255,255,.28); text-decoration: none; }
+
+    /* ── Sticky Nav Tabs ── */
+    .tab-bar {
+      position: sticky; top: 0; z-index: 100;
+      background: #1a3a6b;
+      display: flex; flex-wrap: wrap; gap: 0;
+      overflow-x: auto;
+      box-shadow: 0 2px 8px rgba(0,0,0,.25);
+    }
+    .tab-bar button {
+      background: transparent; border: none; cursor: pointer;
+      color: rgba(255,255,255,.75);
+      padding: .75rem 1.1rem;
+      font-size: .88rem; font-family: inherit; white-space: nowrap;
+      border-bottom: 3px solid transparent;
+      transition: color .15s, border-color .15s, background .15s;
+    }
+    .tab-bar button:hover { color: #fff; background: rgba(255,255,255,.08); }
+    .tab-bar button.active { color: #fff; border-bottom-color: #f9c74f; }
+
+    /* ── Main Container ── */
+    .container { max-width: 980px; margin: 0 auto; padding: 1.5rem 1rem 4rem; }
+
+    /* ── Section Panels ── */
+    .panel { display: none; animation: fadeIn .2s ease; }
+    .panel.active { display: block; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+
+    /* ── Section Header ── */
+    .section-title {
+      font-size: 1.35rem; font-weight: 700;
+      padding: .5rem 0 .6rem;
+      border-bottom: 3px solid #2f6eb5;
+      margin-bottom: 1.2rem;
+      color: #1a3a6b;
+      display: flex; align-items: center; gap: .5rem;
+    }
+
+    /* ── Level Badge ── */
+    .badge {
+      display: inline-block; padding: .18rem .65rem;
+      border-radius: 12px; font-size: .78rem; font-weight: 700;
+      letter-spacing: .04em; vertical-align: middle;
+    }
+    .badge-intro { background: #e8f4fd; color: #1565c0; }
+    .badge-a1    { background: #e8f8e8; color: #2e7d32; }
+    .badge-a2    { background: #fff3e0; color: #e65100; }
+    .badge-b1    { background: #fce4ec; color: #c62828; }
+    .badge-b2    { background: #ede7f6; color: #4527a0; }
+    .badge-sound { background: #e0f7fa; color: #00695c; }
+
+    /* ── Category Chip ── */
+    .chip {
+      display: inline-block; padding: .12rem .55rem;
+      background: #eef1f7; color: #555; border-radius: 8px;
+      font-size: .75rem; white-space: nowrap;
+    }
+
+    /* ── Table ── */
+    .grammar-table {
+      width: 100%; border-collapse: collapse;
+      background: #fff; border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 1px 6px rgba(0,0,0,.07);
+      margin-bottom: 2rem;
+    }
+    .grammar-table thead { background: #1a3a6b; color: #fff; }
+    .grammar-table thead th { padding: .65rem 1rem; text-align: left; font-size: .85rem; font-weight: 600; }
+    .grammar-table tbody tr { border-bottom: 1px solid #f0f0f0; transition: background .12s; }
+    .grammar-table tbody tr:last-child { border-bottom: none; }
+    .grammar-table tbody tr:hover { background: #f0f5ff; }
+    .grammar-table td { padding: .6rem 1rem; font-size: .9rem; vertical-align: middle; }
+    .grammar-table td.num { color: #888; font-size: .8rem; width: 90px; }
+    .grammar-table td.order { width: 60px; text-align: center; }
+    .grammar-table td.order span {
+      display: inline-block; width: 26px; height: 26px; line-height: 26px;
+      background: #e8eef8; color: #2f6eb5; border-radius: 50%;
+      font-size: .78rem; font-weight: 700; text-align: center;
+    }
+
+    /* ── Sub-section heading inside panel ── */
+    .sub-heading {
+      font-size: 1.05rem; font-weight: 700; color: #1a3a6b;
+      margin: 1.8rem 0 .7rem; padding-left: .7rem;
+      border-left: 4px solid #2f6eb5;
+    }
+    .sub-sub-heading {
+      font-size: .92rem; font-weight: 700; color: #444;
+      margin: 1.2rem 0 .45rem; padding-left: .5rem;
+      border-left: 3px solid #f9c74f;
+    }
+
+    /* ── Word-type Card Grid ── */
+    .card-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1rem; margin-bottom: 2rem;
+    }
+    .card {
+      background: #fff; border-radius: 10px;
+      box-shadow: 0 1px 6px rgba(0,0,0,.07);
+      padding: 1rem 1.1rem;
+    }
+    .card h3 {
+      font-size: .95rem; font-weight: 700; color: #1a3a6b;
+      margin-bottom: .55rem; padding-bottom: .35rem;
+      border-bottom: 2px solid #e8eef8;
+      display: flex; align-items: center; gap: .4rem;
+    }
+    .card ul { list-style: none; padding: 0; }
+    .card ul li {
+      padding: .22rem 0; font-size: .84rem;
+      border-bottom: 1px dashed #f0f0f0;
+      display: flex; align-items: flex-start; gap: .4rem;
+    }
+    .card ul li:last-child { border-bottom: none; }
+    .card ul li::before { content: "›"; color: #2f6eb5; font-weight: 700; flex-shrink: 0; }
+
+    /* ── Degree-level section for 按程度 ── */
+    .level-block { margin-bottom: 2.5rem; }
+    .level-header {
+      display: flex; align-items: center; gap: .7rem;
+      font-size: 1.1rem; font-weight: 700;
+      padding: .55rem .9rem;
+      border-radius: 8px;
+      margin-bottom: .9rem;
+    }
+    .level-header.a1 { background: #e8f8e8; color: #2e7d32; }
+    .level-header.a2 { background: #fff3e0; color: #e65100; }
+    .level-header.b1 { background: #fce4ec; color: #c62828; }
+    .level-header.b2 { background: #ede7f6; color: #4527a0; }
+
+    /* ── Progress tag ── */
+    .prog-tag {
+      display: inline-block; padding: .1rem .45rem;
+      border-radius: 6px; font-size: .72rem; font-weight: 600;
+    }
+    .prog-a1 { background: #e8f8e8; color: #2e7d32; }
+    .prog-a2 { background: #fff3e0; color: #e65100; }
+    .prog-b1 { background: #fce4ec; color: #c62828; }
+    .prog-b2 { background: #ede7f6; color: #4527a0; }
+
+    /* ── Sound grid ── */
+    .sound-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: .8rem; margin-bottom: 2rem;
+    }
+    .sound-card {
+      background: #fff; border-radius: 8px; padding: .8rem 1rem;
+      box-shadow: 0 1px 5px rgba(0,0,0,.07);
+      display: flex; align-items: center; gap: .7rem;
+      transition: box-shadow .15s, transform .1s;
+    }
+    .sound-card:hover { box-shadow: 0 3px 12px rgba(0,0,0,.12); transform: translateY(-1px); }
+    .sound-num {
+      width: 34px; height: 34px; border-radius: 50%;
+      background: #00695c; color: #fff;
+      font-size: .8rem; font-weight: 700;
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    }
+    .sound-card a { font-size: .88rem; color: #00695c; font-weight: 600; }
+    .sound-card a:hover { color: #004d40; }
+
+    /* ── Responsive ── */
+    @media (max-width: 600px) {
+      header h1 { font-size: 1.4rem; }
+      .grammar-table td.num { display: none; }
+      .grammar-table td.order { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══════════ HEADER ══════════ -->
+<header>
+  <div class="rooster">🐓</div>
+  <h1>法文學習總覽</h1>
+  <p>Le Coq Français · 法文雞的文法筆記 · 完整資源索引</p>
+  <a class="source-link" href="https://www.lecoqfr.com" target="_blank" rel="noopener">前往原始網站 ↗</a>
+</header>
+
+<!-- ══════════ TAB BAR ══════════ -->
+<div class="tab-bar" role="tablist">
+  <button class="active" onclick="switchTab('sound', this)" role="tab">🔊 發音教學</button>
+  <button onclick="switchTab('intro', this)" role="tab">📖 入門文法</button>
+  <button onclick="switchTab('a1', this)" role="tab">🟢 A1 初級文法</button>
+  <button onclick="switchTab('a2', this)" role="tab">🟠 A2 初中級文法</button>
+  <button onclick="switchTab('bylevel', this)" role="tab">📊 文法整理（按程度）</button>
+  <button onclick="switchTab('bytype', this)" role="tab">📚 文法整理（按詞類）</button>
+</div>
+
+<!-- ══════════ MAIN ══════════ -->
+<div class="container">
+
+  <!-- ────────── 發音教學 ────────── -->
+  <div id="panel-sound" class="panel active">
+    <div class="section-title">🔊 發音教學 <span class="badge badge-sound">Phonétique</span></div>
+    <p style="margin-bottom:1.2rem;font-size:.9rem;color:#555;">完整發音課程，從字母到語調，循序漸進掌握法語發音規則。</p>
+    <div class="sound-grid">
+      <div class="sound-card">
+        <div class="sound-num">00</div>
+        <a href="https://www.lecoqfr.com/完整法文發音教學（零）：前言/" target="_blank" rel="noopener">前言</a>
+      </div>
+      <div class="sound-card">
+        <div class="sound-num">01</div>
+        <a href="https://www.lecoqfr.com/完整法文發音教學（一）：字母篇/" target="_blank" rel="noopener">字母 A–Z 及變音符號</a>
+      </div>
+      <div class="sound-card">
+        <div class="sound-num">02</div>
+        <a href="https://www.lecoqfr.com/完整法文發音教學（二）：音標篇/" target="_blank" rel="noopener">法文音標</a>
+      </div>
+      <div class="sound-card">
+        <div class="sound-num">03</div>
+        <a href="https://www.lecoqfr.com/法文的音節和劃分規則/" target="_blank" rel="noopener">音節與劃分規則</a>
+      </div>
+      <div class="sound-card">
+        <div class="sound-num">04</div>
+        <a href="https://www.lecoqfr.com/法文詞末的（不）發音規則/" target="_blank" rel="noopener">詞末（不）發音規則</a>
+      </div>
+      <div class="sound-card">
+        <div class="sound-num">05</div>
+        <a href="https://www.lecoqfr.com/完整法文發音教學（五）：啞音-h-vs-噓音-h/" target="_blank" rel="noopener">字母 h：啞音 vs 噓音</a>
+      </div>
+      <div class="sound-card">
+        <div class="sound-num">06</div>
+        <a href="https://www.lecoqfr.com/完整法文發音教學（六）：啞音-e-和口語中的省略/" target="_blank" rel="noopener">啞音 e 的省略</a>
+      </div>
+      <div class="sound-card">
+        <div class="sound-num">07</div>
+        <a href="https://www.lecoqfr.com/完整法文發音教學（七）：去鼻音化/" target="_blank" rel="noopener">去鼻音化</a>
+      </div>
+      <div class="sound-card">
+        <div class="sound-num">08</div>
+        <a href="https://www.lecoqfr.com/完整法文發音教學（八）：連音與聯誦/" target="_blank" rel="noopener">連音與聯誦</a>
+      </div>
+      <div class="sound-card">
+        <div class="sound-num">09</div>
+        <a href="https://www.lecoqfr.com/完整法文發音教學（九）：重音、語調和節奏組/" target="_blank" rel="noopener">重音、語調和節奏組</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ────────── 入門文法 ────────── -->
+  <div id="panel-intro" class="panel">
+    <div class="section-title">📖 入門文法和發音 <span class="badge badge-intro">Débutant</span></div>
+    <p style="margin-bottom:1.2rem;font-size:.9rem;color:#555;">零基礎入門，涵蓋法文基本概念、詞類、性數、動詞變位等核心知識。</p>
+    <table class="grammar-table">
+      <thead>
+        <tr>
+          <th style="width:110px">編號</th>
+          <th>主題</th>
+          <th style="width:90px">分類</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="num">入門文法 00</td>
+          <td><a href="https://www.lecoqfr.com/法文-vs-中英文：概述五個文法上的基本差異/" target="_blank" rel="noopener">法文的特點（與中英文比較）</a></td>
+          <td><span class="chip">總論</span></td>
+        </tr>
+        <tr>
+          <td class="num">入門文法 00</td>
+          <td><a href="https://www.lecoqfr.com/法文的八大詞類、句子成分和結構/" target="_blank" rel="noopener">法文的八大詞類、句子成分和結構</a></td>
+          <td><span class="chip">總論</span></td>
+        </tr>
+        <tr>
+          <td class="num">入門文法 01</td>
+          <td><a href="https://www.lecoqfr.com/完整法文發音教學（一）：字母篇/" target="_blank" rel="noopener">法文字母 A 至 Z 及變音符號</a></td>
+          <td><span class="chip">發音</span></td>
+        </tr>
+        <tr>
+          <td class="num">入門文法 02</td>
+          <td><a href="https://www.lecoqfr.com/完整法文發音教學（二）：音標篇/" target="_blank" rel="noopener">法文音標</a></td>
+          <td><span class="chip">發音</span></td>
+        </tr>
+        <tr>
+          <td class="num">入門文法 03</td>
+          <td><a href="https://www.lecoqfr.com/陰陽性與單眾數/" target="_blank" rel="noopener">陰陽性與單眾數：名詞</a></td>
+          <td><span class="chip">總論</span></td>
+        </tr>
+        <tr>
+          <td class="num">入門文法 04</td>
+          <td><a href="https://www.lecoqfr.com/性數配合的概念/" target="_blank" rel="noopener">性數配合：冠詞 &amp; 形容詞</a></td>
+          <td><span class="chip">總論</span></td>
+        </tr>
+        <tr>
+          <td class="num">入門文法 05</td>
+          <td><a href="https://www.lecoqfr.com/初談動詞變位-以etre為例/" target="_blank" rel="noopener">動詞變位：être</a></td>
+          <td><span class="chip">總論</span></td>
+        </tr>
+        <tr>
+          <td class="num">入門文法 06</td>
+          <td><a href="https://www.lecoqfr.com/基本的疑問和否定形式：est-ce-que-ne-pas/" target="_blank" rel="noopener">問題和否定形式：est-ce que &amp; ne pas</a></td>
+          <td><span class="chip">答問 / 否定</span></td>
+        </tr>
+        <tr>
+          <td class="num">入門文法 07</td>
+          <td><a href="https://www.lecoqfr.com/er-動詞的變位規則/" target="_blank" rel="noopener">第一組 -er 尾動詞的變位規則</a></td>
+          <td><span class="chip">動詞</span></td>
+        </tr>
+        <tr>
+          <td class="num">入門文法 08</td>
+          <td><a href="https://www.lecoqfr.com/反身動詞的基本用法/" target="_blank" rel="noopener">第一組 -er 尾的代詞式動詞</a></td>
+          <td><span class="chip">動詞</span></td>
+        </tr>
+        <tr>
+          <td class="num">入門文法 09</td>
+          <td><a href="https://www.lecoqfr.com/a-和-de-的基本用法/" target="_blank" rel="noopener">介詞：à 和 de</a></td>
+          <td><span class="chip">介詞</span></td>
+        </tr>
+        <tr>
+          <td class="num">入門文法 10</td>
+          <td><a href="https://www.lecoqfr.com/當介詞-a、de-遇上定冠詞-縮合冠詞-au-aux-du-des/" target="_blank" rel="noopener">縮合冠詞：au, aux, du, des</a></td>
+          <td><span class="chip">限定詞</span></td>
+        </tr>
+        <tr>
+          <td class="num">入門文法 11</td>
+          <td><a href="https://www.lecoqfr.com/表達所屬關係：主有／所有格形容詞/" target="_blank" rel="noopener">主有形容詞：mon, ma, mes, notre, votre…</a></td>
+          <td><span class="chip">限定詞</span></td>
+        </tr>
+        <tr>
+          <td class="num">入門文法 12</td>
+          <td><a href="https://www.lecoqfr.com/指示形容詞-ce-cette-ces-cet/" target="_blank" rel="noopener">指示形容詞：ce, cette, ces, cet</a></td>
+          <td><span class="chip">限定詞</span></td>
+        </tr>
+        <tr>
+          <td class="num">入門文法 13</td>
+          <td><a href="https://www.lecoqfr.com/法文最重要動詞之二：-avoir-及其應用/" target="_blank" rel="noopener">動詞 avoir 及應用</a></td>
+          <td><span class="chip">動詞</span></td>
+        </tr>
+        <tr>
+          <td class="num">入門文法 14</td>
+          <td><a href="https://www.lecoqfr.com/表達「數量為零」的絕對否定：pas-de/" target="_blank" rel="noopener">絕對否定：pas de</a></td>
+          <td><span class="chip">否定</span></td>
+        </tr>
+        <tr>
+          <td class="num">入門文法 15</td>
+          <td><a href="https://www.lecoqfr.com/表達「我們」、「人們」的主語人稱代詞-on/" target="_blank" rel="noopener">主語人稱代詞 on</a></td>
+          <td><span class="chip">代詞</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ────────── A1 初級文法 ────────── -->
+  <div id="panel-a1" class="panel">
+    <div class="section-title">🟢 A1 初級文法 <span class="badge badge-a1">Élémentaire</span></div>
+    <p style="margin-bottom:1.2rem;font-size:.9rem;color:#555;">28 個主題，涵蓋動詞時態、介詞、疑問句、代詞、比較級等基礎文法。「建議順序」欄供參考學習路線。</p>
+    <table class="grammar-table">
+      <thead>
+        <tr>
+          <th style="width:110px">編號</th>
+          <th>主題</th>
+          <th style="width:80px">分類</th>
+          <th class="order" style="width:60px">順序</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="num">初級文法 01</td>
+          <td><a href="https://www.lecoqfr.com/ir-動詞的變位規則/" target="_blank" rel="noopener">第二組 -ir 動詞變位規則</a></td>
+          <td><span class="chip">動詞</span></td>
+          <td class="order"><span>10</span></td>
+        </tr>
+        <tr>
+          <td class="num">初級文法 02</td>
+          <td><a href="https://www.lecoqfr.com/法文不規則動詞變位規則詳解/" target="_blank" rel="noopener">不規則動詞變位</a></td>
+          <td><span class="chip">動詞</span></td>
+          <td class="order"><span>11</span></td>
+        </tr>
+        <tr>
+          <td class="num">初級文法 03</td>
+          <td><a href="https://www.lecoqfr.com/活動與嗜好：動詞-faire-jouer/" target="_blank" rel="noopener">動詞 faire &amp; jouer：活動與嗜好</a></td>
+          <td><span class="chip">動詞</span></td>
+          <td class="order"><span>12</span></td>
+        </tr>
+        <tr>
+          <td class="num">初級文法 04</td>
+          <td><a href="https://www.lecoqfr.com/動詞-aller-與地方/" target="_blank" rel="noopener">動詞 aller 與地方</a></td>
+          <td><span class="chip">動詞</span></td>
+          <td class="order"><span>13</span></td>
+        </tr>
+        <tr>
+          <td class="num">初級文法 05</td>
+          <td><a href="https://www.lecoqfr.com/最近將來時：aller-不定式/" target="_blank" rel="noopener">最近將來時 futur proche：aller + 不定式</a></td>
+          <td><span class="chip">動詞</span></td>
+          <td class="order"><span>14</span></td>
+        </tr>
+        <tr>
+          <td class="num">初級文法 06</td>
+          <td><a href="https://www.lecoqfr.com/法文複合過去時用法詳解/" target="_blank" rel="noopener">複合過去時 passé composé</a></td>
+          <td><span class="chip">動詞</span></td>
+          <td class="order"><span>15</span></td>
+        </tr>
+        <tr>
+          <td class="num">初級文法 07</td>
+          <td><a href="https://www.lecoqfr.com/法文未完成過去時用法詳解/" target="_blank" rel="noopener">未完成過去時 imparfait</a></td>
+          <td><span class="chip">動詞</span></td>
+          <td class="order"><span>16</span></td>
+        </tr>
+        <tr>
+          <td class="num">初級文法 08</td>
+          <td><a href="https://www.lecoqfr.com/法文未完成過去時-vs-複合過去時-兩種過去時的/" target="_blank" rel="noopener">複合過去時 vs 未完成過去時</a></td>
+          <td><span class="chip">動詞</span></td>
+          <td class="order"><span>17</span></td>
+        </tr>
+        <tr>
+          <td class="num">初級文法 09</td>
+          <td><a href="https://www.lecoqfr.com/法文簡單將來時-futur-simple/" target="_blank" rel="noopener">簡單將來時 futur simple</a></td>
+          <td><span class="chip">動詞</span></td>
+          <td class="order"><span>18</span></td>
+        </tr>
+        <tr>
+          <td class="num">初級文法 10</td>
+          <td><a href="https://www.lecoqfr.com/介詞-a-en-城市和國家/" target="_blank" rel="noopener">介詞：à / de + 城市和國家</a></td>
+          <td><span class="chip">介詞</span></td>
+          <td class="order"><span>1</span></td>
+        </tr>
+        <tr>
+          <td class="num">初級文法 11</td>
+          <td><a href="https://www.lecoqfr.com/介詞：上下前後內（sur-sous-devant-derriere-dans）/" target="_blank" rel="noopener">介詞：上下前後內（sur, sous, devant, derrière, dans）</a></td>
+          <td><span class="chip">介詞</span></td>
+          <td class="order"><span>2</span></td>
+        </tr>
+        <tr>
+          <td class="num">初級文法 12</td>
+          <td><a href="https://www.lecoqfr.com/介詞：離-很近-遠-pres-de-loin-de/" target="_blank" rel="noopener">介詞：près de, loin de（離⋯很近／很遠）</a></td>
+          <td><span class="chip">介詞</span></td>
+          <td class="order"><span>3</span></td>
+        </tr>
+        <tr>
+          <td class="num">初級文法 13</td>
+          <td><a href="https://www.lecoqfr.com/疑問形式：這是誰-甚麼？-cest-vs-il-est/" target="_blank" rel="noopener">疑問形式：qui, que，c'est vs il est</a></td>
+          <td><span class="chip">問答</span></td>
+          <td class="order"><span>5</span></td>
+        </tr>
+        <tr>
+          <td class="num">初級文法 14</td>
+          <td><a href="https://www.lecoqfr.com/cest-和-il-est-的分別/" target="_blank" rel="noopener">c'est 和 il est 的分別</a></td>
+          <td><span class="chip">問答</span></td>
+          <td class="order"><span>6</span></td>
+        </tr>
+        <tr>
+          <td class="num">初級文法 15</td>
+          <td><a href="https://www.lecoqfr.com/法文基本疑問形式（上）：疑問詞/" target="_blank" rel="noopener">基本疑問詞</a></td>
+          <td><span class="chip">問答</span></td>
+          <td class="order"><span>20</span></td>
+        </tr>
+        <tr>
+          <td class="num">初級文法 16</td>
+          <td><a href="https://www.lecoqfr.com/法文基本疑問形式（下）：三種疑問句的組成/" target="_blank" rel="noopener">三種疑問句：雅語、日常語、通俗語</a></td>
+          <td><span class="chip">問答</span></td>
+          <td class="order"><span>21</span></td>
+        </tr>
+        <tr>
+          <td class="num">初級文法 17</td>
+          <td><a href="https://www.lecoqfr.com/表示不確定數量的部分冠詞-du-de-la-des/" target="_blank" rel="noopener">部分冠詞：du, de la, des</a></td>
+          <td><span class="chip">限定詞</span></td>
+          <td class="order"><span>7</span></td>
+        </tr>
+        <tr>
+          <td class="num">初級文法 18</td>
+          <td><a href="https://www.lecoqfr.com/法文直接受詞-cod-vs-間接受詞-coi/" target="_blank" rel="noopener">直接受詞 COD vs 間接受詞 COI</a></td>
+          <td><span class="chip">總論</span></td>
+          <td class="order"><span>22</span></td>
+        </tr>
+        <tr>
+          <td class="num">初級文法 19</td>
+          <td><a href="https://www.lecoqfr.com/直接受詞代名詞-pronom-cod：le-la-les/" target="_blank" rel="noopener">直接受詞代名詞 pronom COD：le, la, les…</a></td>
+          <td><span class="chip">代詞</span></td>
+          <td class="order"><span>23</span></td>
+        </tr>
+        <tr>
+          <td class="num">初級文法 20</td>
+          <td><a href="https://www.lecoqfr.com/間接受詞代名詞-pronom-coi：lui-leur/" target="_blank" rel="noopener">間接受詞代名詞 pronom COI：lui, leur</a></td>
+          <td><span class="chip">代詞</span></td>
+          <td class="order"><span>24</span></td>
+        </tr>
+        <tr>
+          <td class="num">初級文法 21</td>
+          <td><a href="https://www.lecoqfr.com/代詞-en-的用法/" target="_blank" rel="noopener">代詞 en</a></td>
+          <td><span class="chip">代詞</span></td>
+          <td class="order"><span>25</span></td>
+        </tr>
+        <tr>
+          <td class="num">初級文法 22</td>
+          <td><a href="https://www.lecoqfr.com/代詞-y-的用法/" target="_blank" rel="noopener">代詞 y</a></td>
+          <td><span class="chip">代詞</span></td>
+          <td class="order"><span>26</span></td>
+        </tr>
+        <tr>
+          <td class="num">初級文法 23</td>
+          <td><a href="https://www.lecoqfr.com/用於強調的重讀人稱代詞-pronom-tonique/" target="_blank" rel="noopener">重讀人稱代詞 pronom tonique：moi, toi, lui…</a></td>
+          <td><span class="chip">代詞</span></td>
+          <td class="order"><span>27</span></td>
+        </tr>
+        <tr>
+          <td class="num">初級文法 24</td>
+          <td><a href="https://www.lecoqfr.com/法文基本關係代詞（一）：qui-que/" target="_blank" rel="noopener">關係代詞 pronom relatif：qui, que</a></td>
+          <td><span class="chip">代詞</span></td>
+          <td class="order"><span>28</span></td>
+        </tr>
+        <tr>
+          <td class="num">初級文法 25</td>
+          <td><a href="https://www.lecoqfr.com/基本時間標誌介詞/" target="_blank" rel="noopener">基本時間標誌介詞：depuis, pendant, il y a…</a></td>
+          <td><span class="chip">表達：時間</span></td>
+          <td class="order"><span>19</span></td>
+        </tr>
+        <tr>
+          <td class="num">初級文法 26</td>
+          <td><a href="https://www.lecoqfr.com/表示存在的句型-il-y-a/" target="_blank" rel="noopener">表示存在：il y a</a></td>
+          <td><span class="chip">表達：空間</span></td>
+          <td class="order"><span>4</span></td>
+        </tr>
+        <tr>
+          <td class="num">初級文法 27</td>
+          <td><a href="https://www.lecoqfr.com/法文比較級/" target="_blank" rel="noopener">比較級</a></td>
+          <td><span class="chip">表達：比較</span></td>
+          <td class="order"><span>8</span></td>
+        </tr>
+        <tr>
+          <td class="num">初級文法 28</td>
+          <td><a href="https://www.lecoqfr.com/法文的最高級/" target="_blank" rel="noopener">最高級</a></td>
+          <td><span class="chip">表達：比較</span></td>
+          <td class="order"><span>9</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ────────── A2 初中級文法 ────────── -->
+  <div id="panel-a2" class="panel">
+    <div class="section-title">🟠 A2 初中級文法 <span class="badge badge-a2">Pré-intermédiaire</span></div>
+    <p style="margin-bottom:1.2rem;font-size:.9rem;color:#555;">19 個主題，深入動詞語式、代詞、否定、條件句、邏輯關係等進階文法。</p>
+    <table class="grammar-table">
+      <thead>
+        <tr>
+          <th style="width:120px">編號</th>
+          <th>主題</th>
+          <th style="width:100px">分類</th>
+          <th class="order" style="width:60px">順序</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="num">初中級文法 01</td>
+          <td><a href="https://www.lecoqfr.com/反身動詞的四種意義/" target="_blank" rel="noopener">代詞式動詞的四種意義</a></td>
+          <td><span class="chip">動詞</span></td>
+          <td class="order"><span>7</span></td>
+        </tr>
+        <tr>
+          <td class="num">初中級文法 02</td>
+          <td><a href="https://www.lecoqfr.com/法文的命令式-imperatif/" target="_blank" rel="noopener">命令式 impératif</a></td>
+          <td><span class="chip">動詞</span></td>
+          <td class="order"><span>9</span></td>
+        </tr>
+        <tr>
+          <td class="num">初中級文法 03</td>
+          <td><a href="https://www.lecoqfr.com/法文的條件式-conditionnel-特殊的過去未來時/" target="_blank" rel="noopener">條件式 conditionnel</a></td>
+          <td><span class="chip">動詞</span></td>
+          <td class="order"><span>10</span></td>
+        </tr>
+        <tr>
+          <td class="num">初中級文法 04</td>
+          <td><a href="https://www.lecoqfr.com/過去分詞、現在分詞與副動詞/" target="_blank" rel="noopener">過去分詞、現在分詞和副動詞 gérondif</a></td>
+          <td><span class="chip">動詞</span></td>
+          <td class="order"><span>14</span></td>
+        </tr>
+        <tr>
+          <td class="num">初中級文法 05</td>
+          <td><a href="https://www.lecoqfr.com/法文的被動語態及其他被動表達/" target="_blank" rel="noopener">被動語態</a></td>
+          <td><span class="chip">動詞</span></td>
+          <td class="order"><span>15</span></td>
+        </tr>
+        <tr>
+          <td class="num">初中級文法 06</td>
+          <td><a href="https://www.lecoqfr.com/法文過去與將來的先時性表達：愈過去時和先將來時/" target="_blank" rel="noopener">愈過去時 plus-que-parfait 和先將來時 futur antérieur</a></td>
+          <td><span class="chip">動詞</span></td>
+          <td class="order"><span>16</span></td>
+        </tr>
+        <tr>
+          <td class="num">初中級文法 07</td>
+          <td><a href="https://www.lecoqfr.com/法文的虛擬式-subjontif/" target="_blank" rel="noopener">虛擬式 subjonctif</a></td>
+          <td><span class="chip">動詞</span></td>
+          <td class="order"><span>18</span></td>
+        </tr>
+        <tr>
+          <td class="num">初中級文法 08</td>
+          <td><a href="https://www.lecoqfr.com/法文形容詞概論/" target="_blank" rel="noopener">形容詞概論</a></td>
+          <td><span class="chip">形容詞</span></td>
+          <td class="order"><span>1</span></td>
+        </tr>
+        <tr>
+          <td class="num">初中級文法 09</td>
+          <td><a href="https://www.lecoqfr.com/法文副詞概論/" target="_blank" rel="noopener">副詞概論</a></td>
+          <td><span class="chip">副詞</span></td>
+          <td class="order"><span>4</span></td>
+        </tr>
+        <tr>
+          <td class="num">初中級文法 10</td>
+          <td><a href="https://www.lecoqfr.com/ne-pas-以外的法文常見否定形式/" target="_blank" rel="noopener">ne…pas 外的否定形式</a></td>
+          <td><span class="chip">否定</span></td>
+          <td class="order"><span>12</span></td>
+        </tr>
+        <tr>
+          <td class="num">初中級文法 11</td>
+          <td><a href="https://www.lecoqfr.com/法文代名詞的順序/" target="_blank" rel="noopener">代名詞的順序</a></td>
+          <td><span class="chip">代詞</span></td>
+          <td class="order"><span>6</span></td>
+        </tr>
+        <tr>
+          <td class="num">初中級文法 12</td>
+          <td><a href="https://www.lecoqfr.com/法文基本泛指詞：tout-quelques-certains-plusieurs-differents/" target="_blank" rel="noopener">泛指詞 indéfinis：tout, quelques, certains, plusieurs…</a></td>
+          <td><span class="chip">代詞 / 限定詞</span></td>
+          <td class="order"><span>2</span></td>
+        </tr>
+        <tr>
+          <td class="num">初中級文法 13</td>
+          <td><a href="https://www.lecoqfr.com/法文基本關係代詞（二）：ou-dont/" target="_blank" rel="noopener">關係代詞 pronom relatif：où, dont</a></td>
+          <td><span class="chip">代詞</span></td>
+          <td class="order"><span>9</span></td>
+        </tr>
+        <tr>
+          <td class="num">初中級文法 14</td>
+          <td><a href="https://www.lecoqfr.com/法文進階關係代詞（一）：ce-qui-ce-que-ce-dont/" target="_blank" rel="noopener">關係代詞：ce qui, ce que, ce dont</a></td>
+          <td><span class="chip">代詞</span></td>
+          <td class="order"><span>10</span></td>
+        </tr>
+        <tr>
+          <td class="num">初中級文法 15</td>
+          <td><a href="https://www.lecoqfr.com/法文進階關係代詞（二）：複合關係代詞-auquel-duquel-pour-lequel/" target="_blank" rel="noopener">複合關係代詞：auquel, duquel, pour lequel…</a></td>
+          <td><span class="chip">代詞</span></td>
+          <td class="order"><span>11</span></td>
+        </tr>
+        <tr>
+          <td class="num">初中級文法 16</td>
+          <td><a href="https://www.lecoqfr.com/法文的間接引語-discours-indirect/" target="_blank" rel="noopener">間接引語 discours indirect</a></td>
+          <td><span class="chip">表達：引語</span></td>
+          <td class="order"><span>13</span></td>
+        </tr>
+        <tr>
+          <td class="num">初中級文法 17</td>
+          <td><a href="https://www.lecoqfr.com/基本時間、空間介詞表達補遺/" target="_blank" rel="noopener">基本時間空間表達補遺</a></td>
+          <td><span class="chip">表達：時間、空間</span></td>
+          <td class="order"><span>3</span></td>
+        </tr>
+        <tr>
+          <td class="num">初中級文法 18</td>
+          <td><a href="https://www.lecoqfr.com/法文的三種條件句和時態要求/" target="_blank" rel="noopener">三種條件句</a></td>
+          <td><span class="chip">表達：假設</span></td>
+          <td class="order"><span>17</span></td>
+        </tr>
+        <tr>
+          <td class="num">初中級文法 19</td>
+          <td><a href="https://www.lecoqfr.com/法文的基本邏輯關係表達/" target="_blank" rel="noopener">邏輯關係</a></td>
+          <td><span class="chip">表達：邏輯</span></td>
+          <td class="order"><span>19</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ────────── 按程度 ────────── -->
+  <div id="panel-bylevel" class="panel">
+    <div class="section-title">📊 文法整理（按程度）</div>
+    <p style="margin-bottom:1.4rem;font-size:.9rem;color:#555;">依 A1 → A2 → B1 → B2 學習順序整理，每個主題包含應用情境。內容大部分譯自《新觀察家》(L'OBS)。</p>
+
+    <!-- A1 -->
+    <div class="level-block">
+      <div class="level-header a1">🟢 A1 · 初學階段入門級</div>
+
+      <div class="sub-heading">1.1 自我介紹</div>
+      <table class="grammar-table">
+        <tbody>
+          <tr><td><a href="https://www.lecoqfr.com/法文文法整理-按程度/法文文法欄目-1-1-1-我是誰/" target="_blank" rel="noopener">1.1.1 我是誰</a></td></tr>
+          <tr><td><a href="https://www.lecoqfr.com/法文文法整理-按程度/法文文法欄目-1-1-2-國藉/" target="_blank" rel="noopener">1.1.2 國籍</a></td></tr>
+          <tr><td><a href="https://www.lecoqfr.com/法文文法整理-按程度/法文文法欄目-1-1-3-國家與城市/" target="_blank" rel="noopener">1.1.3 國家與城市</a></td></tr>
+          <tr><td><a href="https://www.lecoqfr.com/法文文法整理-按程度/法文文法欄目-1-1-4-年齡/" target="_blank" rel="noopener">1.1.4 年齡</a></td></tr>
+          <tr><td><a href="https://www.lecoqfr.com/法文文法整理-按程度/法文文法欄目-1-1-5-否定/" target="_blank" rel="noopener">1.1.5 否定</a></td></tr>
+          <tr><td><a href="https://www.lecoqfr.com/法文文法整理-按程度/法文文法欄目-1-1-6-以-quel-提問/" target="_blank" rel="noopener">1.1.6 以 quel 提問</a></td></tr>
+          <tr><td><a href="https://www.lecoqfr.com/法文文法整理-按程度/法文文法欄目-1-1-7-封閉式問題/" target="_blank" rel="noopener">1.1.7 封閉式問題</a></td></tr>
+          <tr><td><a href="https://www.lecoqfr.com/法文文法整理-按程度/法文文法欄目-1-1-8-開放式問題/" target="_blank" rel="noopener">1.1.8 開放式問題</a></td></tr>
+        </tbody>
+      </table>
+
+      <div class="sub-heading">1.2 談論活動</div>
+      <table class="grammar-table">
+        <tbody>
+          <tr><td><a href="https://www.lecoqfr.com/法文文法整理-按程度/法文文法欄目-1-2-1-動詞-faire-做-一項活動/" target="_blank" rel="noopener">1.2.1 動詞 faire 做（一項活動）</a></td></tr>
+          <tr><td><a href="https://www.lecoqfr.com/法文文法整理-按程度/法文文法欄目-1-2-2-星期一至日/" target="_blank" rel="noopener">1.2.2 星期一至日</a></td></tr>
+          <tr><td><a href="https://www.lecoqfr.com/法文文法欄目-1-2-3-反身動詞/" target="_blank" rel="noopener">1.2.3 反身動詞</a></td></tr>
+          <tr><td><a href="https://www.lecoqfr.com/法文文法整理-按程度/法文文法欄目-1-2-4-動詞-aller-去-和-venir-來/" target="_blank" rel="noopener">1.2.4 動詞 aller 去 和 venir 來</a></td></tr>
+          <tr><td><a href="https://www.lecoqfr.com/法文文法整理-按程度/法文文法欄目-1-2-5-重讀人稱代詞-moi-toi-lui-elle/" target="_blank" rel="noopener">1.2.5 重讀人稱代詞 moi, toi, lui, elle…</a></td></tr>
+          <tr><td><a href="https://www.lecoqfr.com/法文文法整理-按程度/法文文法欄目-1-2-6-最近將來時-aller-動詞原形/" target="_blank" rel="noopener">1.2.6 最近將來時 aller + 動詞原形</a></td></tr>
+        </tbody>
+      </table>
+
+      <div class="sub-heading">1.3 要求和提議</div>
+      <table class="grammar-table">
+        <tbody>
+          <tr><td><a href="https://www.lecoqfr.com/法文文法整理-按程度/法文文法欄目-1-3-1-指示形容詞-ce-cet-cette-ces/" target="_blank" rel="noopener">1.3.1 指示形容詞 ce / cet / cette / ces</a></td></tr>
+          <tr><td><a href="https://www.lecoqfr.com/法文文法整理-按程度/法文文法欄目-1-3-2-動詞-pouvoir-可、devoir-要-和-vouloir-想/" target="_blank" rel="noopener">1.3.2 動詞 pouvoir 可、devoir 要 和 vouloir 想</a></td></tr>
+        </tbody>
+      </table>
+
+      <div class="sub-heading">1.4 描述</div>
+      <table class="grammar-table">
+        <tbody>
+          <tr><td><a href="https://www.lecoqfr.com/法文文法整理-按程度/法文文法欄目-1-4-1-cest-il-est/" target="_blank" rel="noopener">1.4.1 C'est &amp; il est</a></td></tr>
+          <tr><td><a href="https://www.lecoqfr.com/法文文法整理-按程度/法文文法欄目-1-4-2-主有形容詞-mon-ma-mes/" target="_blank" rel="noopener">1.4.2 主有形容詞 mon / ma / mes…</a></td></tr>
+          <tr><td><a href="https://www.lecoqfr.com/法文文法整理-按程度/法文文法欄目-1-4-3-職業/" target="_blank" rel="noopener">1.4.3 職業</a></td></tr>
+          <tr><td><a href="https://www.lecoqfr.com/法文文法整理-按程度/法文文法欄目-1-4-4-品質形容詞/" target="_blank" rel="noopener">1.4.4 品質形容詞</a></td></tr>
+          <tr><td><a href="https://www.lecoqfr.com/法文文法整理-按程度/法文文法欄目-1-4-5-il-y-a/" target="_blank" rel="noopener">1.4.5 Il y a</a></td></tr>
+          <tr><td><a href="https://www.lecoqfr.com/法文文法整理-按程度/法文文法欄目-1-4-6-比較/" target="_blank" rel="noopener">1.4.6 人、事物、動作的比較</a></td></tr>
+        </tbody>
+      </table>
+
+      <div class="sub-heading">1.5 建議他人</div>
+      <table class="grammar-table">
+        <tbody>
+          <tr><td><a href="https://www.lecoqfr.com/法文文法整理-按程度/法文文法欄目-1-5-1-命令式/" target="_blank" rel="noopener">1.5.1 命令式</a></td></tr>
+          <tr><td><a href="https://www.lecoqfr.com/法文文法整理-按程度/法文文法欄目-1-5-2-條件式的-devoir-和-pouvoir/" target="_blank" rel="noopener">1.5.2 條件式的 devoir 和 pouvoir</a></td></tr>
+        </tbody>
+      </table>
+
+      <div class="sub-heading">1.6 談論食物</div>
+      <table class="grammar-table">
+        <tbody>
+          <tr><td><a href="https://www.lecoqfr.com/法文文法整理-按程度/法文文法欄目-1-6-1-定冠詞和不定冠詞-un-une-des、le-la-les/" target="_blank" rel="noopener">1.6.1 定冠詞和不定冠詞 un / une / des、le / la / les</a></td></tr>
+          <tr><td><a href="https://www.lecoqfr.com/法文文法整理-按程度/法文文法欄目-1-6-2-部份冠詞及數量表達-du、beaucoup-de/" target="_blank" rel="noopener">1.6.2 部份冠詞及數量表達 du、beaucoup de…</a></td></tr>
+        </tbody>
+      </table>
+
+      <div class="sub-heading">1.7 談論天氣</div>
+      <table class="grammar-table">
+        <tbody>
+          <tr><td><a href="https://www.lecoqfr.com/法文文法整理-按程度/法文文法欄目-1-7-1-非人稱代詞-il/" target="_blank" rel="noopener">1.7.1 非人稱代詞 il</a></td></tr>
+          <tr><td><a href="https://www.lecoqfr.com/法文文法整理-按程度/法文文法欄目-1-7-2-談論季節、介詞/" target="_blank" rel="noopener">1.7.2 談論季節、介詞</a></td></tr>
+        </tbody>
+      </table>
+
+      <div class="sub-heading">1.8 談論過去</div>
+      <table class="grammar-table">
+        <tbody>
+          <tr><td><a href="https://www.lecoqfr.com/法文文法整理-按程度/法文文法欄目-1-8-1-複合過去時/" target="_blank" rel="noopener">1.8.1 複合過去時</a></td></tr>
+          <tr><td><a href="https://www.lecoqfr.com/法文文法整理-按程度/法文文法欄目-1-8-2-日子、月份/" target="_blank" rel="noopener">1.8.2 日子、月份</a></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- A2 -->
+    <div class="level-block">
+      <div class="level-header a2">🟠 A2 · 初學階段初級</div>
+
+      <div class="sub-heading">2.1 談論過去</div>
+      <table class="grammar-table">
+        <tbody>
+          <tr><td><a href="https://www.lecoqfr.com/法文文法整理-按程度/法文文法欄目-2-1-1-未完成過去時/" target="_blank" rel="noopener">2.1.1 未完成過去時</a></td></tr>
+          <tr><td><a href="https://www.lecoqfr.com/法文文法整理-按程度/法文文法欄目-2-1-2-不規則過去分詞/" target="_blank" rel="noopener">2.1.2 不規則過去分詞</a></td></tr>
+          <tr><td><a href="https://www.lecoqfr.com/法文文法整理-按程度/法文文法欄目-2-1-3-時間表達：ca-fait、il-y-a-que、pendant、il-y-a/" target="_blank" rel="noopener">2.1.3 時間表達：ça fait、il y a…que、pendant、il y a</a></td></tr>
+          <tr><td><a href="https://www.lecoqfr.com/法文文法整理-按程度/法文文法欄目-2-1-4-複合過去時的反身動詞和助動詞/" target="_blank" rel="noopener">2.1.4 複合過去時的反身動詞和有兩個助動詞的動詞</a></td></tr>
+        </tbody>
+      </table>
+
+      <div class="sub-heading">2.2 談論事物和人</div>
+      <table class="grammar-table">
+        <tbody>
+          <tr><td><a href="https://www.lecoqfr.com/法文文法整理-按程度/法文文法欄目-2-2-1-關係代詞-qui、que、ou/" target="_blank" rel="noopener">2.2.1 關係代詞 qui、que、où</a></td></tr>
+          <tr><td><a href="https://www.lecoqfr.com/法文文法整理-按程度/法文文法欄目-2-2-2-主有代詞/" target="_blank" rel="noopener">2.2.2 主有代詞</a></td></tr>
+          <tr><td><a href="https://www.lecoqfr.com/法文文法整理-按程度/法文文法欄目-2-2-3-直接和間接代詞/" target="_blank" rel="noopener">2.2.3 直接和間接代詞</a></td></tr>
+          <tr><td><a href="https://www.lecoqfr.com/法文文法整理-按程度/法文文法欄目-2-2-4-數量的比較/" target="_blank" rel="noopener">2.2.4 數量的比較</a></td></tr>
+          <tr><td><a href="https://www.lecoqfr.com/法文文法整理-按程度/法文文法欄目-2-2-5-泛指形容詞和泛指代詞-tout、plusieurs、certains/" target="_blank" rel="noopener">2.2.5 泛指形容詞和泛指代詞 tout、plusieurs、certains…</a></td></tr>
+          <tr><td><a href="https://www.lecoqfr.com/法文文法整理-按程度/法文文法欄目-2-2-6-代詞-en-和-y/" target="_blank" rel="noopener">2.2.6 代詞 en 和 y</a></td></tr>
+          <tr><td><a href="https://www.lecoqfr.com/法文文法整理-按程度/法文文法欄目-2-2-7-複雜否定-ne-rien、ne-plus、ne-jamais、ne-personne、ne-aucun/" target="_blank" rel="noopener">2.2.7 複雜否定 ne…rien、ne…plus、ne…jamais、ne…personne、ne…aucun</a></td></tr>
+        </tbody>
+      </table>
+
+      <div class="sub-heading">2.3 談論動作 / 2.4 談論將來</div>
+      <table class="grammar-table">
+        <tbody>
+          <tr><td><a href="https://www.lecoqfr.com/法文文法整理-按程度/法文文法欄目-2-3-1-現在進行時和最近過去時/" target="_blank" rel="noopener">2.3.1 現在進行時和最近過去時</a></td></tr>
+          <tr><td><a href="https://www.lecoqfr.com/法文文法整理-按程度/法文文法欄目-2-4-1-最近將來時和簡單將來時/" target="_blank" rel="noopener">2.4.1 最近將來時和簡單將來時</a></td></tr>
+          <tr><td><a href="https://www.lecoqfr.com/法文文法整理-按程度/法文文法欄目-2-4-2-不規則的簡單將來時動詞/" target="_blank" rel="noopener">2.4.2 不規則的簡單將來時動詞</a></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- B1 -->
+    <div class="level-block">
+      <div class="level-header b1">🔴 B1 · 獨立階段中級</div>
+
+      <div class="sub-heading">3.1 談論各種事情</div>
+      <table class="grammar-table">
+        <tbody>
+          <tr><td><a href="https://www.lecoqfr.com/法文文法整理-按程度/法文文法欄目-3-1-1-被動語態/" target="_blank" rel="noopener">3.1.1 被動語態</a></td></tr>
+          <tr><td><a href="https://www.lecoqfr.com/法文文法整理-按程度/法文文法欄目-3-1-2-愈過去時/" target="_blank" rel="noopener">3.1.2 愈過去時</a></td></tr>
+          <tr><td><a href="https://www.lecoqfr.com/法文文法整理-按程度/法文文法欄目-3-1-3-過去時比較：複合過去時、未完成過去時、愈過去時/" target="_blank" rel="noopener">3.1.3 過去時比較：複合過去時、未完成過去時、愈過去時</a></td></tr>
+          <tr><td><a href="https://www.lecoqfr.com/法文文法整理-按程度/法文文法欄目-3-1-4-引語/" target="_blank" rel="noopener">3.1.4 引語</a></td></tr>
+          <tr><td><a href="https://www.lecoqfr.com/法文文法整理-按程度/法文文法欄目-3-1-5-假設/" target="_blank" rel="noopener">3.1.5 假設</a></td></tr>
+          <tr><td><a href="https://www.lecoqfr.com/法文文法整理-按程度/法文文法欄目-3-1-6-過去分詞的性數配合/" target="_blank" rel="noopener">3.1.6 過去分詞的性數配合</a></td></tr>
+        </tbody>
+      </table>
+
+      <div class="sub-heading">3.2 談論動作 / 3.3 解釋和議論</div>
+      <table class="grammar-table">
+        <tbody>
+          <tr><td><a href="https://www.lecoqfr.com/法文文法整理-按程度/法文文法欄目-3-2-1-副動詞-en-faisant/" target="_blank" rel="noopener">3.2.1 副動詞 en faisant…</a></td></tr>
+          <tr><td><a href="https://www.lecoqfr.com/法文文法整理-按程度/法文文法欄目-3-2-2-指示代詞-celui-ci、celle-la、ceux-ci/" target="_blank" rel="noopener">3.2.2 指示代詞 celui-ci、celle-là、ceux-ci…</a></td></tr>
+          <tr><td><a href="https://www.lecoqfr.com/法文文法整理-按程度/法文文法欄目-3-3-1-表達原因/" target="_blank" rel="noopener">3.3.1 表達原因</a></td></tr>
+          <tr><td><a href="https://www.lecoqfr.com/法文文法整理-按程度/法文文法欄目-3-3-2-表達結果/" target="_blank" rel="noopener">3.3.2 表達結果</a></td></tr>
+          <tr><td><a href="https://www.lecoqfr.com/法文文法整理-按程度/法文文法欄目-3-3-3-表達目的/" target="_blank" rel="noopener">3.3.3 表達目的</a></td></tr>
+          <tr><td><a href="https://www.lecoqfr.com/法文文法整理-按程度/法文文法欄目-3-3-4-表達對立/" target="_blank" rel="noopener">3.3.4 表達對立</a></td></tr>
+          <tr><td><a href="https://www.lecoqfr.com/法文文法整理-按程度/法文文法欄目-3-3-5-複合關係代詞/" target="_blank" rel="noopener">3.3.5 複合關係代詞</a></td></tr>
+          <tr><td><a href="https://www.lecoqfr.com/法文文法整理-按程度/法文文法欄目-3-3-6-代詞的位置與順序/" target="_blank" rel="noopener">3.3.6 代詞的位置與順序</a></td></tr>
+          <tr><td><a href="https://www.lecoqfr.com/法文文法整理-按程度/法文文法欄目-3-3-7-條件式的運用/" target="_blank" rel="noopener">3.3.7 條件式的運用</a></td></tr>
+          <tr><td><a href="https://www.lecoqfr.com/法文文法整理-按程度/法文文法欄目-3-3-8-中性的關係代詞和強調法/" target="_blank" rel="noopener">3.3.8 中性的關係代詞和強調法</a></td></tr>
+          <tr><td><a href="https://www.lecoqfr.com/法文文法整理-按程度/法文文法欄目-3-3-9-表達讓步/" target="_blank" rel="noopener">3.3.9 表達讓步</a></td></tr>
+          <tr><td><a href="https://www.lecoqfr.com/法文文法整理-按程度/法文文法欄目-3-3-10-虛擬式的運用/" target="_blank" rel="noopener">3.3.10 虛擬式的運用</a></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- B2 -->
+    <div class="level-block">
+      <div class="level-header b2">🟣 B2 · 獨立階段中高級</div>
+      <table class="grammar-table">
+        <tbody>
+          <tr><td><a href="https://www.lecoqfr.com/法文文法整理-按程度/法文文法欄目-4-1-1-敘述過去的事件：簡單過去時/" target="_blank" rel="noopener">4.1.1 簡單過去時</a></td></tr>
+          <tr><td><a href="https://www.lecoqfr.com/法文文法整理-按程度/法文文法欄目-4-1-2-虛擬式過去時/" target="_blank" rel="noopener">4.1.2 虛擬式過去時</a></td></tr>
+          <tr><td><a href="https://www.lecoqfr.com/法文文法整理-按程度/法文文法欄目-4-2-1-後接不定式的動詞/" target="_blank" rel="noopener">4.2.1 後接不定式的動詞</a></td></tr>
+          <tr><td><a href="https://www.lecoqfr.com/法文文法整理-按程度/法文文法欄目-4-2-2-現在分詞/" target="_blank" rel="noopener">4.2.2 現在分詞</a></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ────────── 按詞類 ────────── -->
+  <div id="panel-bytype" class="panel">
+    <div class="section-title">📚 文法整理（按詞類）</div>
+    <p style="margin-bottom:1.4rem;font-size:.9rem;color:#555;">所有文法主題按詞類歸類，方便查閱特定語法規則。</p>
+
+    <div class="card-grid">
+
+      <div class="card">
+        <h3>🔵 動詞 Verbes</h3>
+        <ul>
+          <li><a href="https://www.lecoqfr.com/法文文法整理-按程度/法文文法欄目-1-1-1-我是誰/" target="_blank" rel="noopener">我是誰（être）</a></li>
+          <li><a href="https://www.lecoqfr.com/法文文法整理-按程度/法文文法欄目-1-2-1-動詞-faire-做-一項活動/" target="_blank" rel="noopener">動詞 faire 做</a></li>
+          <li><a href="https://www.lecoqfr.com/法文文法欄目-1-2-3-反身動詞/" target="_blank" rel="noopener">反身動詞</a></li>
+          <li><a href="https://www.lecoqfr.com/法文文法整理-按程度/法文文法欄目-1-2-4-動詞-aller-去-和-venir-來/" target="_blank" rel="noopener">動詞 aller 去 和 venir 來</a></li>
+          <li><a href="https://www.lecoqfr.com/法文文法整理-按程度/法文文法欄目-1-3-2-動詞-pouvoir-可、devoir-要-和-vouloir-想/" target="_blank" rel="noopener">pouvoir / devoir / vouloir</a></li>
+          <li><a href="https://www.lecoqfr.com/法文文法整理-按程度/法文文法欄目-1-5-2-條件式的-devoir-和-pouvoir/" target="_blank" rel="noopener">條件式的 devoir 和 pouvoir</a></li>
+          <li><a href="https://www.lecoqfr.com/法文文法整理-按程度/法文文法欄目-4-2-1-後接不定式的動詞/" target="_blank" rel="noopener">後接不定式的動詞</a></li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3>⏱ 語式與時態</h3>
+        <ul>
+          <li><a href="https://www.lecoqfr.com/法文文法整理-按程度/法文文法欄目-1-2-6-最近將來時-aller-動詞原形/" target="_blank" rel="noopener">最近將來時</a></li>
+          <li><a href="https://www.lecoqfr.com/法文文法整理-按程度/法文文法欄目-2-3-1-現在進行時和最近過去時/" target="_blank" rel="noopener">現在進行時和最近過去時</a></li>
+          <li><a href="https://www.lecoqfr.com/法文文法整理-按程度/法文文法欄目-1-8-1-複合過去時/" target="_blank" rel="noopener">複合過去時</a></li>
+          <li><a href="https://www.lecoqfr.com/法文文法整理-按程度/法文文法欄目-2-1-4-複合過去時的反身動詞和助動詞/" target="_blank" rel="noopener">複合過去時的反身動詞</a></li>
+          <li><a href="https://www.lecoqfr.com/法文文法整理-按程度/法文文法欄目-2-1-1-未完成過去時/" target="_blank" rel="noopener">未完成過去時</a></li>
+          <li><a href="https://www.lecoqfr.com/法文文法整理-按程度/法文文法欄目-3-1-2-愈過去時/" target="_blank" rel="noopener">愈過去時</a></li>
+          <li><a href="https://www.lecoqfr.com/法文文法整理-按程度/法文文法欄目-3-1-3-過去時比較：複合過去時、未完成過去時、愈過去時/" target="_blank" rel="noopener">三種過去時比較</a></li>
+          <li><a href="https://www.lecoqfr.com/法文文法整理-按程度/法文文法欄目-4-1-1-敘述過去的事件：簡單過去時/" target="_blank" rel="noopener">簡單過去時</a></li>
+          <li><a href="https://www.lecoqfr.com/法文文法整理-按程度/法文文法欄目-2-4-1-最近將來時和簡單將來時/" target="_blank" rel="noopener">最近將來時和簡單將來時</a></li>
+          <li><a href="https://www.lecoqfr.com/法文文法整理-按程度/法文文法欄目-2-4-2-不規則的簡單將來時動詞/" target="_blank" rel="noopener">不規則的簡單將來時動詞</a></li>
+          <li><a href="https://www.lecoqfr.com/法文文法整理-按程度/法文文法欄目-1-5-1-命令式/" target="_blank" rel="noopener">命令式</a></li>
+          <li><a href="https://www.lecoqfr.com/法文文法整理-按程度/法文文法欄目-3-3-7-條件式的運用/" target="_blank" rel="noopener">條件式</a></li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3>🌀 虛擬式 &amp; 分詞式</h3>
+        <ul>
+          <li><a href="https://www.lecoqfr.com/法文文法整理-按程度/法文文法欄目-3-3-10-虛擬式的運用/" target="_blank" rel="noopener">虛擬式現在時</a></li>
+          <li><a href="https://www.lecoqfr.com/法文文法整理-按程度/法文文法欄目-4-1-2-虛擬式過去時/" target="_blank" rel="noopener">虛擬式過去時</a></li>
+          <li><a href="https://www.lecoqfr.com/法文文法整理-按程度/法文文法欄目-2-1-2-不規則過去分詞/" target="_blank" rel="noopener">不規則過去分詞</a></li>
+          <li><a href="https://www.lecoqfr.com/法文文法整理-按程度/法文文法欄目-3-1-6-過去分詞的性數配合/" target="_blank" rel="noopener">過去分詞的性數配合</a></li>
+          <li><a href="https://www.lecoqfr.com/法文文法整理-按程度/法文文法欄目-3-1-1-被動語態/" target="_blank" rel="noopener">被動語態</a></li>
+          <li><a href="https://www.lecoqfr.com/法文文法整理-按程度/法文文法欄目-4-2-2-現在分詞/" target="_blank" rel="noopener">現在分詞</a></li>
+          <li><a href="https://www.lecoqfr.com/法文文法整理-按程度/法文文法欄目-3-2-1-副動詞-en-faisant/" target="_blank" rel="noopener">副動詞 en faisant…</a></li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3>🏷 限定詞 Déterminants</h3>
+        <ul>
+          <li><a href="https://www.lecoqfr.com/法文文法整理-按程度/法文文法欄目-1-6-1-定冠詞和不定冠詞-un-une-des、le-la-les/" target="_blank" rel="noopener">定冠詞和不定冠詞</a></li>
+          <li><a href="https://www.lecoqfr.com/法文文法整理-按程度/法文文法欄目-1-3-1-指示形容詞-ce-cet-cette-ces/" target="_blank" rel="noopener">指示形容詞 ce / cet / cette / ces</a></li>
+          <li><a href="https://www.lecoqfr.com/法文文法整理-按程度/法文文法欄目-1-4-2-主有形容詞-mon-ma-mes/" target="_blank" rel="noopener">主有形容詞 mon / ma / mes…</a></li>
+          <li><a href="https://www.lecoqfr.com/法文文法整理-按程度/法文文法欄目-1-6-2-部份冠詞及數量表達-du、beaucoup-de/" target="_blank" rel="noopener">部份冠詞及數量表達</a></li>
+          <li><a href="https://www.lecoqfr.com/法文文法整理-按程度/法文文法欄目-2-2-5-泛指形容詞和泛指代詞-tout、plusieurs、certains/" target="_blank" rel="noopener">泛指形容詞 tout、plusieurs…</a></li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3>🔄 代詞 Pronoms</h3>
+        <ul>
+          <li><a href="https://www.lecoqfr.com/法文文法整理-按程度/法文文法欄目-1-2-5-重讀人稱代詞-moi-toi-lui-elle/" target="_blank" rel="noopener">重讀人稱代詞 moi, toi…</a></li>
+          <li><a href="https://www.lecoqfr.com/法文文法整理-按程度/法文文法欄目-1-7-1-非人稱代詞-il/" target="_blank" rel="noopener">非人稱代詞 il</a></li>
+          <li><a href="https://www.lecoqfr.com/法文文法整理-按程度/法文文法欄目-2-2-3-直接和間接代詞/" target="_blank" rel="noopener">直接和間接代詞</a></li>
+          <li><a href="https://www.lecoqfr.com/法文文法整理-按程度/法文文法欄目-2-2-6-代詞-en-和-y/" target="_blank" rel="noopener">代詞 en 和 y</a></li>
+          <li><a href="https://www.lecoqfr.com/法文文法整理-按程度/法文文法欄目-3-3-6-代詞的位置與順序/" target="_blank" rel="noopener">代詞的位置與順序</a></li>
+          <li><a href="https://www.lecoqfr.com/法文文法整理-按程度/法文文法欄目-2-2-1-關係代詞-qui、que、ou/" target="_blank" rel="noopener">關係代詞 qui、que、où</a></li>
+          <li><a href="https://www.lecoqfr.com/法文文法整理-按程度/法文文法欄目-3-3-5-複合關係代詞/" target="_blank" rel="noopener">複合關係代詞</a></li>
+          <li><a href="https://www.lecoqfr.com/法文文法整理-按程度/法文文法欄目-3-3-8-中性的關係代詞和強調法/" target="_blank" rel="noopener">中性的關係代詞和強調法</a></li>
+          <li><a href="https://www.lecoqfr.com/法文文法整理-按程度/法文文法欄目-2-2-5-泛指形容詞和泛指代詞-tout、plusieurs、certains/" target="_blank" rel="noopener">泛指代詞 tout、plusieurs…</a></li>
+          <li><a href="https://www.lecoqfr.com/法文文法整理-按程度/法文文法欄目-2-2-2-主有代詞/" target="_blank" rel="noopener">主有代詞</a></li>
+          <li><a href="https://www.lecoqfr.com/法文文法整理-按程度/法文文法欄目-3-2-2-指示代詞-celui-ci、celle-la、ceux-ci/" target="_blank" rel="noopener">指示代詞 celui-ci、celle-là…</a></li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3>🚫 否定 Négation</h3>
+        <ul>
+          <li><a href="https://www.lecoqfr.com/法文文法整理-按程度/法文文法欄目-1-1-5-否定/" target="_blank" rel="noopener">簡單否定</a></li>
+          <li><a href="https://www.lecoqfr.com/法文文法整理-按程度/法文文法欄目-2-2-7-複雜否定-ne-rien、ne-plus、ne-jamais、ne-personne、ne-aucun/" target="_blank" rel="noopener">複雜否定 ne…rien、ne…plus、ne…jamais…</a></li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3>❓ 提問 Questions</h3>
+        <ul>
+          <li><a href="https://www.lecoqfr.com/法文文法整理-按程度/法文文法欄目-1-1-6-以-quel-提問/" target="_blank" rel="noopener">以 quel 提問</a></li>
+          <li><a href="https://www.lecoqfr.com/法文文法整理-按程度/法文文法欄目-1-1-7-封閉式問題/" target="_blank" rel="noopener">封閉式問題</a></li>
+          <li><a href="https://www.lecoqfr.com/法文文法整理-按程度/法文文法欄目-1-1-8-開放式問題/" target="_blank" rel="noopener">開放式問題</a></li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3>💬 表達 Expressions</h3>
+        <ul>
+          <li><a href="https://www.lecoqfr.com/法文文法整理-按程度/法文文法欄目-1-4-1-cest-il-est/" target="_blank" rel="noopener">C'est &amp; il est</a></li>
+          <li><a href="https://www.lecoqfr.com/法文文法整理-按程度/法文文法欄目-1-4-5-il-y-a/" target="_blank" rel="noopener">Il y a</a></li>
+          <li><a href="https://www.lecoqfr.com/法文文法整理-按程度/法文文法欄目-2-1-3-時間表達：ca-fait、il-y-a-que、pendant、il-y-a/" target="_blank" rel="noopener">時間表達：ça fait、il y a…que…</a></li>
+          <li><a href="https://www.lecoqfr.com/法文文法整理-按程度/法文文法欄目-3-3-1-表達原因/" target="_blank" rel="noopener">表達原因</a></li>
+          <li><a href="https://www.lecoqfr.com/法文文法整理-按程度/法文文法欄目-3-3-2-表達結果/" target="_blank" rel="noopener">表達結果</a></li>
+          <li><a href="https://www.lecoqfr.com/法文文法整理-按程度/法文文法欄目-3-3-3-表達目的/" target="_blank" rel="noopener">表達目的</a></li>
+          <li><a href="https://www.lecoqfr.com/法文文法整理-按程度/法文文法欄目-3-3-4-表達對立/" target="_blank" rel="noopener">表達對立</a></li>
+          <li><a href="https://www.lecoqfr.com/法文文法整理-按程度/法文文法欄目-3-3-9-表達讓步/" target="_blank" rel="noopener">表達讓步</a></li>
+          <li><a href="https://www.lecoqfr.com/法文文法整理-按程度/法文文法欄目-1-4-6-比較/" target="_blank" rel="noopener">人、事物、動作的比較</a></li>
+          <li><a href="https://www.lecoqfr.com/法文文法整理-按程度/法文文法欄目-2-2-4-數量的比較/" target="_blank" rel="noopener">數量的比較</a></li>
+          <li><a href="https://www.lecoqfr.com/法文文法整理-按程度/法文文法欄目-3-1-4-引語/" target="_blank" rel="noopener">引語</a></li>
+          <li><a href="https://www.lecoqfr.com/法文文法整理-按程度/法文文法欄目-3-1-5-假設/" target="_blank" rel="noopener">假設</a></li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3>📅 詞彙情境 Vocabulaire</h3>
+        <ul>
+          <li><a href="https://www.lecoqfr.com/法文文法整理-按程度/法文文法欄目-1-1-2-國藉/" target="_blank" rel="noopener">國籍</a></li>
+          <li><a href="https://www.lecoqfr.com/法文文法整理-按程度/法文文法欄目-1-1-3-國家與城市/" target="_blank" rel="noopener">國家與城市</a></li>
+          <li><a href="https://www.lecoqfr.com/法文文法整理-按程度/法文文法欄目-1-1-4-年齡/" target="_blank" rel="noopener">年齡</a></li>
+          <li><a href="https://www.lecoqfr.com/法文文法整理-按程度/法文文法欄目-1-2-2-星期一至日/" target="_blank" rel="noopener">星期一至日</a></li>
+          <li><a href="https://www.lecoqfr.com/法文文法整理-按程度/法文文法欄目-1-4-3-職業/" target="_blank" rel="noopener">職業</a></li>
+          <li><a href="https://www.lecoqfr.com/法文文法整理-按程度/法文文法欄目-1-4-4-品質形容詞/" target="_blank" rel="noopener">品質形容詞</a></li>
+          <li><a href="https://www.lecoqfr.com/法文文法整理-按程度/法文文法欄目-1-7-2-談論季節、介詞/" target="_blank" rel="noopener">談論季節、介詞</a></li>
+          <li><a href="https://www.lecoqfr.com/法文文法整理-按程度/法文文法欄目-1-8-2-日子、月份/" target="_blank" rel="noopener">日子、月份</a></li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+
+</div><!-- /container -->
+
+<!-- ══════════ FOOTER ══════════ -->
+<footer style="text-align:center;padding:1.5rem;font-size:.82rem;color:#888;border-top:1px solid #e8e8e8;background:#fff;">
+  內容整理自 <a href="https://www.lecoqfr.com" target="_blank" rel="noopener">Le Coq Français 法文雞的文法筆記</a> ·
+  GitHub Pages：<a href="https://ww411966-bot.github.io/french-grammar/" target="_blank" rel="noopener">ww411966-bot.github.io/french-grammar</a>
+</footer>
+
+<script>
+  function switchTab(name, btn) {
+    // Hide all panels
+    document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+    // Remove active from all buttons
+    document.querySelectorAll('.tab-bar button').forEach(b => b.classList.remove('active'));
+    // Show target panel
+    document.getElementById('panel-' + name).classList.add('active');
+    // Mark button active
+    btn.classList.add('active');
+    // Scroll to top of container
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+</script>
+
+</body>
+</html>
